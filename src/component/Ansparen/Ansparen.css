@@ -1,0 +1,129 @@
+@media screen and (min-width: 1025px) {
+    .ansparen {
+        margin-left: 10rem;
+        padding: 1rem;
+    }
+    .ansparennav {
+        height: auto;
+        width: 10rem;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        overflow-x: hidden;
+        padding-top: 1.5rem;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .ansparennav button {
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .selection {
+        position: absolute;
+        top: 40%;
+    }
+    .addNew {
+        position: relative;
+        top: 40%;
+        left: 300%;
+    }
+    .loadData {
+        position: relative;
+        top: 40%;
+        left: -20%;
+    }
+    .chart {
+        width: 120rem;
+        height: 50rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .ansparen {
+        margin-left: 10rem;
+        padding: 1rem;
+    }
+    .ansparennav {
+        height: auto;
+        width: 10rem;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        overflow-x: hidden;
+        padding-top: 1.5rem;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .ansparennav button {
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .selection {
+        position: absolute;
+        top: 40%;
+        left: -10%;
+    }
+    .addNew {
+        position: relative;
+        top: 40%;
+        left: 300%;
+    }
+    .loadData {
+        position: relative;
+        top: 40%;
+    }
+    .chart {
+        width: 85rem;
+        height: 30rem;
+    }
+}
+
+
+/* On smaller screens, where height is less than 479px, change the style of the sidebar (less padding and a smaller font size) */
+
+@media screen and (max-width: 479px) {
+    .ansparen {
+        margin-left: 0rem;
+        padding: 1rem;
+    }
+    #addData {
+        display: none;
+    }
+    .ansparennav {
+        margin-top: 5rem;
+        left: 0;
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .ansparennav button {
+        margin-top: 5rem;
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .selection {
+        position: absolute;
+        top: 40%;
+        left: 15%;
+    }
+    .addNew {
+        position: relative;
+        top: 40%;
+        margin-bottom: 5rem;
+    }
+    .loadData {
+        position: relative;
+        top: 40%;
+        right: 30%;
+    }
+    .chart {
+        width: 25rem;
+        height: 20rem;
+        margin-left: 10%;
+        margin-bottom: 5rem;
+        margin-top: 0;
+    }
+}

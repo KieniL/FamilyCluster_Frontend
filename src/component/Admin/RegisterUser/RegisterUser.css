@@ -1,0 +1,45 @@
+.register {
+    position: relative;
+    top: 40%;
+}
+
+.appLabel {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding: 20px;
+    display: inline-block;
+}
+
+.password {
+    position: relative;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.password i {
+    position: absolute;
+    top: 60%;
+    right: 6%;
+}
+
+.password i:hover {
+    color: #00fcb6;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+    .registerPage {
+        top: 40%;
+        left: 40%;
+        position: absolute;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .registerPage {
+        top: 55%;
+        left: 0;
+        margin-bottom: 5rem;
+        position: relative;
+    }
+}

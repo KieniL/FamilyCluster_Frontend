@@ -1,0 +1,33 @@
+.userLabel {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding: 20px;
+    display: inline-block;
+}
+
+.addApp {
+    position: relative;
+}
+
+@media screen and (min-width: 480px) {
+    .addAppPage {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+    }
+    .addApp {
+        top: 40%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .addAppPage {
+        position: relative;
+        top: 55%;
+        left: 0;
+        margin-bottom: 5rem;
+    }
+    .addApp {
+        top: 60%;
+    }
+}

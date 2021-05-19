@@ -1,0 +1,40 @@
+.password {
+    position: relative;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.password i {
+    position: absolute;
+    top: 60%;
+    right: 6%;
+}
+
+.password i:hover {
+    color: #00fcb6;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+    .loginPage {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+    }
+    .Login {
+        position: relative;
+        top: 40%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .loginPage {
+        position: absolute;
+        top: 24%;
+        left: 10%;
+    }
+    .Login {
+        position: relative;
+        top: 40%;
+    }
+}

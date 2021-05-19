@@ -1,0 +1,143 @@
+.content-table {
+    border-collapse: collapse;
+    /*Reduces amount of space of the cells*/
+    margin: 25px 0;
+    /*Space to content and bottom*/
+    font-size: 0.9em;
+    min-width: 25em;
+    /*Eqauls to 400px*/
+    border-radius: 5px 5px 0 0;
+    /*Make a radius on the left and right*/
+    overflow: hidden;
+    /*Ensures that border radius works*/
+    box-shadow: 0 0 20px (rgba(0, 0, 0, 15));
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    /*Color the tableheader*/
+    color: white;
+    text-align: left;
+    /*Make sure columns and header is left*/
+    font-weight: bold;
+}
+
+.content-table tbody tr {
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+    /*Light grey bottom line*/
+}
+
+.content-table th,
+.content-table td {
+    padding: 0.75em 0.9375em;
+    /*12px 15px*/
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+    /*Background color of every second row*/
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+    /*Make last line thicker*/
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.selection {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+}
+
+@media screen and (min-width: 1025px) {
+    .cert {
+        margin-left: 10rem;
+        padding: 1rem;
+    }
+    .certnav {
+        height: auto;
+        width: 10rem;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        overflow-x: hidden;
+        padding-top: 1.5rem;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .certnav button {
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .addNew {
+        position: relative;
+        top: 40%;
+        left: 0%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .cert {
+        margin-left: 1rem;
+        padding: 1rem;
+    }
+    .certnav {
+        height: auto;
+        width: 10rem;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        overflow-x: hidden;
+        padding-top: 1.5rem;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .certnav button {
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .addNew {
+        position: relative;
+        top: 40%;
+        left: 30%;
+    }
+    .loadData {
+        position: relative;
+        top: 40%;
+    }
+}
+
+
+/* On smaller screens, where height is less than 479px, change the style of the sidebar (less padding and a smaller font size) */
+
+@media screen and (max-width: 479px) {
+    #addData {
+        display: none;
+    }
+    .certnav {
+        margin-top: 5rem;
+        left: 0;
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .certnav button {
+        margin-top: 5rem;
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+    .addNew {
+        position: relative;
+        top: 40%;
+        margin-bottom: 5rem;
+    }
+}
