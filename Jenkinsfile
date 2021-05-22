@@ -85,9 +85,7 @@ pipeline {
                   reportFiles: 'trufflehog.txt',
                   reportName: "Trufflehog Report"
                 ])
-              }catch (exc) {
-                error('Check secret failed' + exc.message)
-              }   
+              }catch (exc) {}   
             }
           }
 
