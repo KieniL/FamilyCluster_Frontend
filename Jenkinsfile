@@ -120,6 +120,7 @@ pipeline {
         stage ('SAST') {
           steps {
             script {
+              def sonar = tool 'sonar'
               sh 'sonar.txt || true'
               sh "${sonar}/bin/sonar-scanner  > sonar.txt"
 
