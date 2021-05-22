@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: family
+  labels:
+    app: frontend
+spec:
+  type: ClusterIP
+  ports:
+   - port: 8080
+     name: frontend
+  selector:
+   app: frontend
