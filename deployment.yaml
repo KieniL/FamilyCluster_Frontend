@@ -13,15 +13,6 @@ spec:
       labels:
         app:  frontend
     spec:
-      initContainers:
-      - name: wait-for-apiservice
-        image: stefanevinance/wait-for-200
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: TIMEOUT
-            value: '5'
-          - name: URL
-            value: http://apiservice.family:8080/swagger-ui.html
       containers:
       - name:  frontend
         image: luke19/familyfrontend:<VERSION>
