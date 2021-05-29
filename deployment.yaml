@@ -4,7 +4,6 @@ metadata:
   name: frontend
   namespace: family
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app:  frontend
@@ -13,10 +12,28 @@ spec:
       labels:
         app:  frontend
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - frontend
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       containers:
       - name:  frontend
         image: luke19/familyfrontend:<VERSION>
         imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsUser: 10000
+          runAsGroup: 10000
+          fsGroup: 200000
         resources:
           limits:
             memory: 512Mi
@@ -39,10 +56,13 @@ spec:
           initialDelaySeconds: 10 #start checking after 30 seconds
           periodSeconds: 10 #check every 30 seconds
           failureThreshold: 10
-        readinessProbe: #Check that pod is healthy
-          httpGet:
-            path: / #path to check
-            port: 8080 #port to check
-          initialDelaySeconds: 15 #start checking after 15 seconds
-          periodSeconds: 10 #check every 3 seconds
-          failureThreshold: 10
+        readinessProbe:
+          initialDelaySeconds: 1
+          periodSeconds: 5
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 1
+          exec:
+            command:
+            - cat
+            - /etc/nginx/nginx.conf
