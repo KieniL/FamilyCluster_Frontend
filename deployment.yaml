@@ -28,12 +28,6 @@ spec:
       - name:  frontend
         image: luke19/familyfrontend:<VERSION>
         imagePullPolicy: Always
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          runAsUser: 10000
-          runAsGroup: 10000
-          fsGroup: 200000
         resources:
           limits:
             memory: 512Mi
