@@ -12,9 +12,13 @@ ENV REACT_APP_API_URL=https://backend.kieni.at
 RUN npm run build
 
 # production environment
-FROM nginx:stable-alpine
+FROM nginx:1.21.0-alpine
 
 COPY --from=build /app/build /usr/share/nginx/html
+
+RUN apk update && apk add --upgrade libxml2-dbg curl-doc curl libxml2
+
+
 
 
 # copy Nginx config files
