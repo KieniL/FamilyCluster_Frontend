@@ -18,6 +18,13 @@ COPY --from=build /app/build /usr/share/nginx/html
 
 RUN apk update && apk add --upgrade libxml2-dbg curl-doc curl libxml2
 
+#Remove apk to not allow installation of additional packages
+RUN apk del py-pip && rm -rf /.cache/pip && \
+  rm -f /sbin/apk  && \
+  rm -rf /etc/apk  && \
+  rm -rf /lib/apk  && \
+  rm -rf /usr/share/apk  && \
+  rm -rf /var/lib/apk
 
 
 
