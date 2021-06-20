@@ -22,25 +22,23 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Router>
-          <nav><Navigation /></nav>
-          <Route path="/">
-            {localStorage.getItem('jwt') == null ? <Redirect to="/login" /> : null}
-          </Route>
-          <Route path="/home" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/changePassword/:username" component={ChangePassword} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/admin/registerUser" component={RegisterUser} />
-          <Route path="/admin/addApp" component={AddApplication} />
-          <Route path="/admin/updateApp" component={UpdateApplication} />
-          <Route path="/mfa/verify" component={MFA_Verify} />
-          <Route path="/mfa/setup" component={MFA_Setup} />
-          <Route path="/refreshapps/:username" component={RefreshApps} />
-          <Route path="/ansparen" component={Ansparen} />
-          <Route path="/cert" component={Zertifizierung} />
-        </Router>
+        <nav><Navigation /></nav>
+        <Route path="/">
+          {localStorage.getItem('jwt') == null ? <Redirect to="/login" /> : null}
+        </Route>
+        <Route path="/home" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/changePassword/:username" component={ChangePassword} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/admin/registerUser" component={RegisterUser} />
+        <Route path="/admin/addApp" component={AddApplication} />
+        <Route path="/admin/updateApp" component={UpdateApplication} />
+        <Route path="/mfa/verify" component={MFA_Verify} />
+        <Route path="/mfa/setup" component={MFA_Setup} />
+        <Route path="/refreshapps/:username" component={RefreshApps} />
+        <Route path="/ansparen" component={Ansparen} />
+        <Route path="/cert" component={Zertifizierung} />
       </Router>
 
     </div>
