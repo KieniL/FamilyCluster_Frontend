@@ -14,7 +14,7 @@ RUN npm run build
 # production environment
 FROM nginx:1.21.0-alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html/frontend
 
 RUN apk update && apk add --upgrade libxml2-dbg curl-doc curl libxml2
 
