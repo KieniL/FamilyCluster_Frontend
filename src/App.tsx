@@ -21,7 +21,7 @@ import Home from './component/Home/Home';
 function App() {
   return (
     <div className="app">
-      <Router>
+      <Router basename="/frontend">
         <nav><Navigation /></nav>
         <Route path="/">
           {localStorage.getItem('jwt') == null ? <Redirect to="/login" /> : null}

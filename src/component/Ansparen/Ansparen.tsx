@@ -53,17 +53,17 @@ class Ansparen extends React.Component {
 
                     localStorage.setItem('apps', JSON.stringify(data));
 
-                    window.location.href = "/home";
+                    window.location.href = "/frontend/home";
                 }, (error) => {
                     //Redirect User
                     console.log(error);
-                    window.location.href = "/home";
+                    window.location.href = "/frontend/home";
                 });
             }
         }, (error) => {
             //Redirect UseramountData
             console.log(error);
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         });
 
 
@@ -94,7 +94,7 @@ class Ansparen extends React.Component {
 
 
 
-                        window.location.href = "/mfa/setup";
+                        window.location.href = "/frontend/mfa/setup";
 
                     }, (error) => {
 
@@ -103,7 +103,7 @@ class Ansparen extends React.Component {
 
 
                 } else {
-                    window.location.href = "/mfa/verify";
+                    window.location.href = "/frontend/mfa/verify";
                 }
 
             }
@@ -159,7 +159,7 @@ class Ansparen extends React.Component {
         
 
 
-        window.location.href = "/ansparen";
+        window.location.href = "/frontend/ansparen";
 
 
     }

@@ -17,7 +17,7 @@ class Logout extends React.Component {
         }
         AuthApiService.resetMfa((localStorage.getItem('user') || ''), token).then((response) => {
             localStorage.clear();
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         }, (error) => {
             console.log(error);
         });

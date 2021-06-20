@@ -42,7 +42,7 @@ export default function ChangePassword() {
 
         AuthApiService.changePassword((localStorage.getItem('user') || ''), passwordModel).then((response) => {
 
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         }, (error) => {
 
             console.log(error);

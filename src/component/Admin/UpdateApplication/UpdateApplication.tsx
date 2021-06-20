@@ -45,11 +45,11 @@ class UpdateApplication extends React.Component {
 
                     localStorage.setItem('apps', JSON.stringify(data));
 
-                    window.location.href = "/home";
+                    window.location.href = "/frontend/home";
                 }, (error) => {
                     //Redirect User
                     console.log(error);
-                    window.location.href = "/home";
+                    window.location.href = "/frontend/home";
                 });
 
             }
@@ -57,7 +57,7 @@ class UpdateApplication extends React.Component {
         }, (error) => {
             //Redirect User
             console.log(error);
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         });
 
 
@@ -88,7 +88,7 @@ class UpdateApplication extends React.Component {
 
 
 
-                        window.location.href = "/mfa/setup";
+                        window.location.href = "/frontend/mfa/setup";
 
                     }, (error) => {
 
@@ -97,7 +97,7 @@ class UpdateApplication extends React.Component {
 
 
                 } else {
-                    window.location.href = "/mfa/verify";
+                    window.location.href = "/frontend/mfa/verify";
                 }
 
             }
@@ -241,12 +241,12 @@ class UpdateApplication extends React.Component {
 
                 localStorage.setItem('apps', JSON.stringify(data));
 
-                window.location.href = "/admin";
+                window.location.href = "/frontend/admin";
                 
             }, (error) => {
                 //Redirect User
                 console.log(error);
-                window.location.href = "/admin";
+                window.location.href = "/frontend/admin";
             });
 
         

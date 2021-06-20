@@ -27,7 +27,7 @@ class Navigation extends React.Component {
             this.linkClass = "fas fa-sign-in-alt";
             this.linkHref = "#login";
         } else {
-            this.linkUrl = "/logout";
+            this.linkUrl = "/frontend/logout";
             this.linkClass = "fas fa-sign-out-alt";
             this.linkText = "Logout";
             this.linkHref = "#logout";

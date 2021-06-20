@@ -13,11 +13,11 @@ class RefreshApps extends React.Component {
 
             localStorage.setItem('apps', JSON.stringify(data));
 
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         }, (error) => {
             //Redirect User
             console.log(error);
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         });
     }
 

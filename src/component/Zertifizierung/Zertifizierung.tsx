@@ -65,7 +65,7 @@ class Zertifizierung extends React.Component {
 
 
 
-                        window.location.href = "/mfa/setup";
+                        window.location.href = "/frontend/mfa/setup";
 
                     }, (error) => {
 
@@ -74,7 +74,7 @@ class Zertifizierung extends React.Component {
 
 
                 } else {
-                    window.location.href = "/mfa/verify";
+                    window.location.href = "/frontend/mfa/verify";
                 }
 
             }
@@ -100,7 +100,7 @@ class Zertifizierung extends React.Component {
     }
 
     handleSubmit(event) {
-        window.location.href = "/ansparen";
+        window.location.href = "/frontend/ansparen";
     }
 
     validateForm() {

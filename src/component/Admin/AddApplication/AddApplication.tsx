@@ -47,11 +47,11 @@ class AddApplication extends React.Component {
 
                     localStorage.setItem('apps', JSON.stringify(data));
 
-                    window.location.href = "/home";
+                    window.location.href = "/frontend/home";
                 }, (error) => {
                     //Redirect User
                     console.log(error);
-                    window.location.href = "/home";
+                    window.location.href = "/frontend/home";
                 });
 
             }
@@ -59,7 +59,7 @@ class AddApplication extends React.Component {
         }, (error) => {
             //Redirect User
             console.log(error);
-            window.location.href = "/home";
+            window.location.href = "/frontend/home";
         });
 
         let token: Token = {
@@ -89,7 +89,7 @@ class AddApplication extends React.Component {
 
 
 
-                        window.location.href = "/mfa/setup";
+                        window.location.href = "/frontend/mfa/setup";
 
                     }, (error) => {
 
@@ -98,7 +98,7 @@ class AddApplication extends React.Component {
 
 
                 } else {
-                    window.location.href = "/mfa/verify";
+                    window.location.href = "/frontend/mfa/verify";
                 }
 
             }
@@ -186,10 +186,10 @@ class AddApplication extends React.Component {
 
                 localStorage.setItem('apps', JSON.stringify(data));
 
-                window.location.href = "/admin";
+                window.location.href = "/frontend/admin";
             }, (error) => {
                 console.log(error);
-                window.location.href = "/admin";
+                window.location.href = "/frontend/admin";
             });
 
             

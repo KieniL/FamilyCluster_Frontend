@@ -87,7 +87,7 @@ export default function Login() {
 
 
 
-                            window.location.href = "/mfa/setup";
+                            window.location.href = "/frontend/mfa/setup";
 
                         }, (error) => {
 
@@ -96,11 +96,11 @@ export default function Login() {
 
 
                     } else {
-                        window.location.href = "/mfa/verify";
+                        window.location.href = "/frontend/mfa/verify";
                     }
 
                 } else {
-                    window.location.href = "/mfa/verify";
+                    window.location.href = "/frontend/mfa/verify";
                 }
 
             }, (error) => {

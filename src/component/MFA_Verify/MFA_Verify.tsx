@@ -40,7 +40,7 @@ export default function MFA_Verify() {
 
             if (data.verificationMessage === "CORRECT CODE"){
                 hideError();
-                window.location.href = "/home";
+                window.location.href = "/frontend/home";
             }else{
                 showError();
             }
