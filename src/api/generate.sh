@@ -6,10 +6,10 @@ fi
 cd "$(dirname "$0")"
 mkdir temp && cd temp
 
-git clone https://github.com/KieniL/Family-Cluster.git
-java -jar ./../openapi-generator-cli.jar generate -i  ./Family-Cluster/api/openapi/auth-api.yml -g typescript-axios -o ./../authentication
-java -jar ./../openapi-generator-cli.jar generate -i  ./Family-Cluster/api/openapi/app-api.yml -g typescript-axios -o ./../application
-java -jar ./../openapi-generator-cli.jar generate -i  ./Family-Cluster/api/openapi/ansparen-api.yml -g typescript-axios -o ./../ansparen
-java -jar ./../openapi-generator-cli.jar generate -i  ./Family-Cluster/api/openapi/cert-api.yml -g typescript-axios -o ./../cert
+git clone https://github.com/KieniL/FamilyCluster_Api.git
+java -jar ./../openapi-generator-cli.jar generate -i  ./FamilyCluster_Api/openapi/auth-api.yml -g typescript-axios -o ./../authentication
+java -jar ./../openapi-generator-cli.jar generate -i  ./FamilyCluster_Api/openapi/app-api.yml -g typescript-axios -o ./../application
+java -jar ./../openapi-generator-cli.jar generate -i  ./FamilyCluster_Api/openapi/ansparen-api.yml -g typescript-axios -o ./../ansparen
+java -jar ./../openapi-generator-cli.jar generate -i  ./FamilyCluster_Api/openapi/cert-api.yml -g typescript-axios -o ./../cert
 
 cd .. && rm -rf temp

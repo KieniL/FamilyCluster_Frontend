@@ -17,7 +17,7 @@ import * as url from "url";
 import { Configuration } from "./configuration";
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 
-const BASE_PATH = "https://backend.kieni.at".replace(/\/+$/, "");
+const BASE_PATH = "http://localhost/api".replace(/\/+$/, "");
 
 /**
  *
