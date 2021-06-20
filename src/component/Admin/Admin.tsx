@@ -92,9 +92,9 @@ class Admin extends React.Component {
         return (
             <div>
                 <div className="sidenav">
-                    <a href="/admin/registerUser">Register User</a>
-                    <a href="/admin/addApp">Add Application</a>
-                    <a href="/admin/updateApp">Update Application</a>
+                    <a href="/frontend/admin/registerUser">Register User</a>
+                    <a href="/frontend/admin/addApp">Add Application</a>
+                    <a href="/frontend/admin/updateApp">Update Application</a>
                 </div>
             </div>
 
