@@ -14,9 +14,7 @@ class Ansparen extends React.Component {
         showComponent: false,
         showLoadComponent: false,
         showAddComponent: false,
-        denizlang: 0,
-        denizkurz: 0,
-        bankaustria: 0,
+        lukas: 0,
         kathi: 0,
         date: '',
         charts: []
@@ -33,9 +31,7 @@ class Ansparen extends React.Component {
         
 
 
-        this.handleDenizLangChange = this.handleDenizLangChange.bind(this);
-        this.handleDenizKurzChange = this.handleDenizKurzChange.bind(this);
-        this.handleBankAustriaChange = this.handleBankAustriaChange.bind(this);
+        this.handleLukasChange = this.handleLukasChange.bind(this);
         this.handleKathiChange = this.handleKathiChange.bind(this)
         this.handleLoadClick = this.handleLoadClick.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
@@ -120,33 +116,19 @@ class Ansparen extends React.Component {
 
         var array = [] as any;
 
-        let entryBankAustria: AnsparEntry = {
+        let entryLukas: AnsparEntry = {
             date: this.state.date,
-            description: "Bank Austria",
-            value: this.state.bankaustria || 0
-        }
-
-        let entryDenizKurz: AnsparEntry = {
-            date: this.state.date,
-            description: "Denizbank Kurz",
-            value: this.state.denizkurz || 0
-        }
-
-        let entryDenizLang: AnsparEntry = {
-            date: this.state.date,
-            description: "Denizbank Lang",
-            value: this.state.denizlang || 0
+            description: "Lukas",
+            value: this.state.lukas || 0
         }
 
         let entryKathi: AnsparEntry = {
             date: this.state.date,
             description: "Kathi",
-            value: this.state.denizlang || 0
+            value: this.state.kathi || 0
         }
 
-        array.push(entryBankAustria);
-        array.push(entryDenizKurz);
-        array.push(entryDenizLang);
+        array.push(entryLukas);
         array.push(entryKathi);
 
 
@@ -165,21 +147,12 @@ class Ansparen extends React.Component {
     }
 
     validateForm() {
-        return String(this.state.denizlang).length > 0 &&
-            String(this.state.denizkurz).length > 0 &&
-            String(this.state.bankaustria).length > 0;
+        return String(this.state.lukas).length > 0 &&
+            String(this.state.kathi).length > 0;
     }
 
-    handleDenizLangChange(event) {
-        this.setState({ denizlang: event.target.value });
-    }
-
-    handleDenizKurzChange(event) {
-        this.setState({ denizkurz: event.target.value });
-    }
-
-    handleBankAustriaChange(event) {
-        this.setState({ bankaustria: event.target.value });
+    handleLukasChange(event) {
+        this.setState({ lukas: event.target.value });
     }
 
     handleKathiChange(event) {
@@ -282,28 +255,12 @@ class Ansparen extends React.Component {
                         {this.state.showAddComponent ?
                             <div className="addNew">
                                 <Form onSubmit={this.handleSubmit.bind(this)}>
-                                    <Form.Group controlId="denizlang">
-                                        <Form.Label>Deniz Lang</Form.Label>
+                                    <Form.Group controlId="Lukas">
+                                        <Form.Label>Lukas</Form.Label>
                                         <Form.Control
                                             type="number"
-                                            value={this.state.denizlang}
-                                            onChange={this.handleDenizLangChange}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group controlId="denizkurz">
-                                        <Form.Label>Deniz Kurz</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            value={this.state.denizkurz}
-                                            onChange={this.handleDenizKurzChange}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group controlId="bankaustria">
-                                        <Form.Label>Bankaustria</Form.Label>
-                                        <Form.Control
-                                            type="number"
-                                            value={this.state.bankaustria}
-                                            onChange={this.handleBankAustriaChange}
+                                            value={this.state.lukas}
+                                            onChange={this.handleLukasChange}
                                         />
                                     </Form.Group>
                                     <Form.Group controlId="kathi">
