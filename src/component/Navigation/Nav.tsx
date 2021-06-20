@@ -39,7 +39,7 @@ class Navigation extends React.Component {
             <nav className="navbar">
                 <ul className="navbar-nav">
                     <li className="logo">
-                        <a id="homelink" href="/home" className="nav-link">
+                        <a id="homelink" href="/frontend/home" className="nav-link">
                             <span className="link-text logo-text">Kienast</span>
                             <i className="fas fa-home"></i>
                         </a>
@@ -56,14 +56,14 @@ class Navigation extends React.Component {
                     ) : null}
 
                     {localStorage.getItem('mfa_done') ? (<li className="nav-item">
-                        <a id="changePasswordlink" href={"/changePassword/" + localStorage.getItem("user")} className="nav-link">
+                        <a id="changePasswordlink" href={"/frontend/changePassword/" + localStorage.getItem("user")} className="nav-link">
                             <i className="fas fa-user"></i>
                             <span className="link-text">Change Password</span>
                         </a>
                     </li>) : null}
 
                     {localStorage.getItem('mfa_done') ? (<li className="nav-item">
-                        <a id="refreshAppsLink" href={"/refreshapps/" + localStorage.getItem("user")} className="nav-link">
+                        <a id="refreshAppsLink" href={"/frontend/refreshapps/" + localStorage.getItem("user")} className="nav-link">
                             <i className="fas fa-sync"></i>
                             <span className="link-text">Refresh Apps</span>
                         </a>
