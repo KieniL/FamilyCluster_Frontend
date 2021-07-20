@@ -28,12 +28,10 @@ export default function MFA_Verify() {
 
         let mFATokenVerification: MFATokenVerification = {
             username: localStorage.getItem('user') || '',
-            jwtToken: localStorage.getItem('jwt') || '',
             mfaToken: event.target.token.value
-
         };
 
-        MfaApiService.mfaVerify(mFATokenVerification).then((response) => {
+        MfaApiService.mfaVerify((localStorage.getItem('jwt') || ""), "1", "1", mFATokenVerification).then((response) => {
             var data = response.data;
 
             localStorage.setItem('mfa_done', 'true');

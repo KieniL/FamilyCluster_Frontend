@@ -35,12 +35,11 @@ export default function ChangePassword() {
         event.preventDefault();
 
         let passwordModel: Password = {
-            password: event.target.password.value,
-            jwt: localStorage.getItem('jwt') || ''
+            password: event.target.password.value
         };
 
 
-        AuthApiService.changePassword((localStorage.getItem('user') || ''), passwordModel).then((response) => {
+        AuthApiService.changePassword((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1", passwordModel).then((response) => {
 
             window.location.href = "/frontend/home";
         }, (error) => {

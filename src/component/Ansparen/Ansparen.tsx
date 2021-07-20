@@ -5,7 +5,7 @@ import './Ansparen.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Chart from "react-google-charts";
-import { Token } from '../../api/authentication/index';
+import { JWTToken } from '../../api/authentication/index';
 
 class Ansparen extends React.Component {
 
@@ -37,14 +37,14 @@ class Ansparen extends React.Component {
         this.handleAddClick = this.handleAddClick.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
 
-        AppApiService.getApp('Ansparen').then((response) => {
+        AppApiService.getApp('Ansparen', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || '')).then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -63,13 +63,13 @@ class Ansparen extends React.Component {
         });
 
 
-        let token: Token = {
-            token: localStorage.getItem('jwt') || '',
+        let token: JWTToken = {
+            jwt: localStorage.getItem('jwt') || '',
             username: localStorage.getItem('user') || ''
         }
 
 
-        AuthApiService.verifyToken(token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -79,12 +79,12 @@ class Ansparen extends React.Component {
 
 
                 if (mfaAction === "setup") {
-                    let mfaSetupToken: Token = {
-                        token: String(localStorage.getItem('jwt')),
+                    let mfaSetupToken: JWTToken = {
+                        jwt: String(localStorage.getItem('jwt')),
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup(mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -133,7 +133,7 @@ class Ansparen extends React.Component {
 
 
         array.forEach(element => {
-            AnsparenApiService.addEntry(element).then((response) =>  {
+            AnsparenApiService.addEntry((localStorage.getItem('jwt') || ""), "1", "1", element).then((response) =>  {
             }, (error) => {
                 console.log(error);
             });
@@ -168,7 +168,7 @@ class Ansparen extends React.Component {
         this.setState({ showLoadComponent: true });
         this.setState({ showAddComponent: false });
 
-        AnsparenApiService.getCategories().then((response) => {
+        AnsparenApiService.getCategories((localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
             var data = response.data
             var array = [] as any;
 

@@ -2,7 +2,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AuthApiService, AppApiService, MfaApiService } from '../../../api';
-import { Login as loginModel, Token } from '../../../api/authentication/index';
+import { Login as loginModel, JWTToken } from '../../../api/authentication/index';
 
 
 
@@ -38,14 +38,14 @@ class RegisterUser extends React.Component {
 
         
 
-        AppApiService.getApp('Adminportal').then((response) => {
+        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || '')).then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -66,13 +66,13 @@ class RegisterUser extends React.Component {
         });
 
 
-        let token: Token = {
-            token: localStorage.getItem('jwt') || '',
+        let token: JWTToken = {
+            jwt: localStorage.getItem('jwt') || '',
             username: localStorage.getItem('user') || ''
         }
 
 
-        AuthApiService.verifyToken(token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -82,12 +82,12 @@ class RegisterUser extends React.Component {
 
 
                 if (mfaAction === "setup") {
-                    let mfaSetupToken: Token = {
-                        token: String(localStorage.getItem('jwt')),
+                    let mfaSetupToken: JWTToken = {
+                        jwt: String(localStorage.getItem('jwt')),
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup(mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -111,7 +111,7 @@ class RegisterUser extends React.Component {
             console.log(error);
         });
 
-        AppApiService.getApplications().then((response) => {
+        AppApiService.getApplications((localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
             var data = response.data || '{}';
 
             data = data!.sort((a, b) => a!.appname!.localeCompare(b!.appname!));
@@ -189,10 +189,10 @@ class RegisterUser extends React.Component {
             username: event.target.username.value,
             password: event.target.password.value
         };
-        AuthApiService.register(login).then((response) => {
+        AuthApiService.register((localStorage.getItem('jwt') || ""), "1", "1", login).then((response) => {
 
             this.state.selectedApps.forEach(function (entry) {
-                AppApiService.addUser2App(entry, event.target.username.value).then((response) => {
+                AppApiService.addUser2App(entry, event.target.username.value, (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
                 }, (error) => {
                     console.log(error);
                 });
