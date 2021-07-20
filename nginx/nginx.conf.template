@@ -15,32 +15,27 @@ http {
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
 
-    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-    #                  '$status $body_bytes_sent "$http_referer" '
-    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+    log_format  main  '${TMP}remote_addr - ${TMP}remote_user [${TMP}time_local] "${TMP}request" '
+                      '${TMP}status ${TMP}body_bytes_sent "${TMP}http_referer" '
+                      '"${TMP}http_user_agent" "${TMP}http_x_forwarded_for"';
 
     
     log_format json_combined escape=json
     '{'
-        '"timestamp":"$time_local",'
-        '"level":"${FRONTEND_LOG_LEVEL}",'
-        '"mdc":
-            \'{\'
-             '"SYSTEM_LOG_LEVEL":"${FRONTEND_LOG_LEVEL}",'
-             '"USER_ID":"",'
-             '"REQUEST_ID":"$request",'
-             '"SOURCE_IP":"$remote_addr",'
-            \'}'\"$remote_user",'
-        '"message": "$request",'   
-        '"status": "$status",'
-        '"body_bytes_sent":"$body_bytes_sent",'
-        '"request_time":"$request_time",'
-        '"http_referrer":"$http_referer",'
-        '"http_user_agent":"$http_user_agent"'
+        '"timestamp":${TMP}time_local,'
+        '"REQUEST_ID":"${TMP}request_id",'
+        '"SOURCE_IP":"${TMP}remote_addr",'
+        '"USER_ID":"$remote_user",'
+        '"message": "${TMP}request",'   
+        '"status": "${TMP}status",'
+        '"body_bytes_sent":${TMP}body_bytes_sent,'
+        '"request_time":${TMP}request_time,'
+        '"http_referrer":${TMP}http_referer",'
+        '"http_user_agent":${TMP}http_user_agent'
     '}';
 
 
-    access_log  /var/log/nginx/access.log  main;
+    access_log  /var/log/nginx/access.log  json_combined;
 
     sendfile        on;
     #tcp_nopush     on;
