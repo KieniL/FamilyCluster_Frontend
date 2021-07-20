@@ -145,11 +145,26 @@ export const AnsparenApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary add an entry
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {AnsparEntry} ansparEntry 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addEntry(ansparEntry: AnsparEntry, options: any = {}): RequestArgs {
+        addEntry(JWT: string, xRequestID: string, SOURCE_IP: string, ansparEntry: AnsparEntry, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling addEntry.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling addEntry.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling addEntry.');
+            }
             // verify required parameter 'ansparEntry' is not null or undefined
             if (ansparEntry === null || ansparEntry === undefined) {
                 throw new RequiredError('ansparEntry','Required parameter ansparEntry was null or undefined when calling addEntry.');
@@ -163,6 +178,18 @@ export const AnsparenApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = Object.assign({ method: 'POST' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -181,10 +208,25 @@ export const AnsparenApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary get Categories
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategories(options: any = {}): RequestArgs {
+        getCategories(JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getCategories.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getCategories.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling getCategories.');
+            }
             const localVarPath = `/ansparen`;
             const localVarUrlObj = url.parse(localVarPath, true);
             let baseOptions;
@@ -194,6 +236,18 @@ export const AnsparenApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -209,13 +263,28 @@ export const AnsparenApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary get Category
          * @param {string} description the description of a category
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategory(description: string, options: any = {}): RequestArgs {
+        getCategory(description: string, JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
             // verify required parameter 'description' is not null or undefined
             if (description === null || description === undefined) {
                 throw new RequiredError('description','Required parameter description was null or undefined when calling getCategory.');
+            }
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getCategory.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getCategory.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling getCategory.');
             }
             const localVarPath = `/ansparen/{description}`
                 .replace(`{${"description"}}`, encodeURIComponent(String(description)));
@@ -227,6 +296,18 @@ export const AnsparenApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -250,12 +331,15 @@ export const AnsparenApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary add an entry
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {AnsparEntry} ansparEntry 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addEntry(ansparEntry: AnsparEntry, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsparEntry> {
-            const localVarAxiosArgs = AnsparenApiAxiosParamCreator(configuration).addEntry(ansparEntry, options);
+        addEntry(JWT: string, xRequestID: string, SOURCE_IP: string, ansparEntry: AnsparEntry, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AnsparEntry> {
+            const localVarAxiosArgs = AnsparenApiAxiosParamCreator(configuration).addEntry(JWT, xRequestID, SOURCE_IP, ansparEntry, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -264,11 +348,14 @@ export const AnsparenApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary get Categories
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategories(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CategoryResponse>> {
-            const localVarAxiosArgs = AnsparenApiAxiosParamCreator(configuration).getCategories(options);
+        getCategories(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CategoryResponse>> {
+            const localVarAxiosArgs = AnsparenApiAxiosParamCreator(configuration).getCategories(JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -278,11 +365,14 @@ export const AnsparenApiFp = function(configuration?: Configuration) {
          * 
          * @summary get Category
          * @param {string} description the description of a category
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategory(description: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CategoryResponse> {
-            const localVarAxiosArgs = AnsparenApiAxiosParamCreator(configuration).getCategory(description, options);
+        getCategory(description: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CategoryResponse> {
+            const localVarAxiosArgs = AnsparenApiAxiosParamCreator(configuration).getCategory(description, JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -300,31 +390,40 @@ export const AnsparenApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary add an entry
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {AnsparEntry} ansparEntry 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addEntry(ansparEntry: AnsparEntry, options?: any) {
-            return AnsparenApiFp(configuration).addEntry(ansparEntry, options)(axios, basePath);
+        addEntry(JWT: string, xRequestID: string, SOURCE_IP: string, ansparEntry: AnsparEntry, options?: any) {
+            return AnsparenApiFp(configuration).addEntry(JWT, xRequestID, SOURCE_IP, ansparEntry, options)(axios, basePath);
         },
         /**
          * 
          * @summary get Categories
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategories(options?: any) {
-            return AnsparenApiFp(configuration).getCategories(options)(axios, basePath);
+        getCategories(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AnsparenApiFp(configuration).getCategories(JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
         /**
          * 
          * @summary get Category
          * @param {string} description the description of a category
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCategory(description: string, options?: any) {
-            return AnsparenApiFp(configuration).getCategory(description, options)(axios, basePath);
+        getCategory(description: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AnsparenApiFp(configuration).getCategory(description, JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
     };
 };
@@ -339,36 +438,45 @@ export class AnsparenApi extends BaseAPI {
     /**
      * 
      * @summary add an entry
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {AnsparEntry} ansparEntry 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnsparenApi
      */
-    public addEntry(ansparEntry: AnsparEntry, options?: any) {
-        return AnsparenApiFp(this.configuration).addEntry(ansparEntry, options)(this.axios, this.basePath);
+    public addEntry(JWT: string, xRequestID: string, SOURCE_IP: string, ansparEntry: AnsparEntry, options?: any) {
+        return AnsparenApiFp(this.configuration).addEntry(JWT, xRequestID, SOURCE_IP, ansparEntry, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary get Categories
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnsparenApi
      */
-    public getCategories(options?: any) {
-        return AnsparenApiFp(this.configuration).getCategories(options)(this.axios, this.basePath);
+    public getCategories(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AnsparenApiFp(this.configuration).getCategories(JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary get Category
      * @param {string} description the description of a category
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnsparenApi
      */
-    public getCategory(description: string, options?: any) {
-        return AnsparenApiFp(this.configuration).getCategory(description, options)(this.axios, this.basePath);
+    public getCategory(description: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AnsparenApiFp(this.configuration).getCategory(description, JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
 }

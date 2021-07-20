@@ -80,12 +80,6 @@ export interface Application {
      * @type {string}
      * @memberof Application
      */
-    jwt: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Application
-     */
     appname: string;
     /**
      * 
@@ -136,47 +130,9 @@ export interface ApplicationResponse {
 /**
  * 
  * @export
- * @interface ApplicationWithoutJwt
- */
-export interface ApplicationWithoutJwt {
-    /**
-     * 
-     * @type {string}
-     * @memberof ApplicationWithoutJwt
-     */
-    appname: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApplicationWithoutJwt
-     */
-    url: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApplicationWithoutJwt
-     */
-    cssClasses?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ApplicationWithoutJwt
-     */
-    allowedUsers?: Array<string>;
-}
-
-/**
- * 
- * @export
  * @interface UpdateApplication
  */
 export interface UpdateApplication {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateApplication
-     */
-    jwt: string;
     /**
      * 
      * @type {string}
@@ -235,11 +191,26 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * 
          * @summary add an application
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {Application} application 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addApplication(application: Application, options: any = {}): RequestArgs {
+        addApplication(JWT: string, xRequestID: string, SOURCE_IP: string, application: Application, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling addApplication.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling addApplication.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling addApplication.');
+            }
             // verify required parameter 'application' is not null or undefined
             if (application === null || application === undefined) {
                 throw new RequiredError('application','Required parameter application was null or undefined when calling addApplication.');
@@ -253,6 +224,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'POST' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -273,10 +256,13 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
          * @summary Add User to App
          * @param {string} appname the name the app
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addUser2App(appname: string, username: string, options: any = {}): RequestArgs {
+        addUser2App(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
             // verify required parameter 'appname' is not null or undefined
             if (appname === null || appname === undefined) {
                 throw new RequiredError('appname','Required parameter appname was null or undefined when calling addUser2App.');
@@ -284,6 +270,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             // verify required parameter 'username' is not null or undefined
             if (username === null || username === undefined) {
                 throw new RequiredError('username','Required parameter username was null or undefined when calling addUser2App.');
+            }
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling addUser2App.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling addUser2App.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling addUser2App.');
             }
             const localVarPath = `/app/{appname}/{username}`
                 .replace(`{${"appname"}}`, encodeURIComponent(String(appname)))
@@ -296,6 +294,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'POST' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -311,13 +321,28 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
          * 
          * @summary Get an App
          * @param {string} appname the name the app
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApp(appname: string, options: any = {}): RequestArgs {
+        getApp(appname: string, JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
             // verify required parameter 'appname' is not null or undefined
             if (appname === null || appname === undefined) {
                 throw new RequiredError('appname','Required parameter appname was null or undefined when calling getApp.');
+            }
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getApp.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getApp.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling getApp.');
             }
             const localVarPath = `/app/{appname}`
                 .replace(`{${"appname"}}`, encodeURIComponent(String(appname)));
@@ -329,6 +354,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -344,13 +381,28 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
          * 
          * @summary Get Apps of User
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAppOfUser(username: string, options: any = {}): RequestArgs {
+        getAppOfUser(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
             // verify required parameter 'username' is not null or undefined
             if (username === null || username === undefined) {
                 throw new RequiredError('username','Required parameter username was null or undefined when calling getAppOfUser.');
+            }
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getAppOfUser.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getAppOfUser.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling getAppOfUser.');
             }
             const localVarPath = `/appOfUser/{username}`
                 .replace(`{${"username"}}`, encodeURIComponent(String(username)));
@@ -362,6 +414,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -376,10 +440,25 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * 
          * @summary get all applications
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApplications(options: any = {}): RequestArgs {
+        getApplications(JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getApplications.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getApplications.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling getApplications.');
+            }
             const localVarPath = `/app`;
             const localVarUrlObj = url.parse(localVarPath, true);
             let baseOptions;
@@ -389,6 +468,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -403,11 +494,26 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
         /**
          * 
          * @summary update an application
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {UpdateApplication} updateApplication 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApplication(updateApplication: UpdateApplication, options: any = {}): RequestArgs {
+        updateApplication(JWT: string, xRequestID: string, SOURCE_IP: string, updateApplication: UpdateApplication, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling updateApplication.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling updateApplication.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling updateApplication.');
+            }
             // verify required parameter 'updateApplication' is not null or undefined
             if (updateApplication === null || updateApplication === undefined) {
                 throw new RequiredError('updateApplication','Required parameter updateApplication was null or undefined when calling updateApplication.');
@@ -421,6 +527,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'PUT' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -441,10 +559,13 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
          * @summary Verify if user is allowed for app
          * @param {string} appname the name the app
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyUserForApp(appname: string, username: string, options: any = {}): RequestArgs {
+        verifyUserForApp(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
             // verify required parameter 'appname' is not null or undefined
             if (appname === null || appname === undefined) {
                 throw new RequiredError('appname','Required parameter appname was null or undefined when calling verifyUserForApp.');
@@ -452,6 +573,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             // verify required parameter 'username' is not null or undefined
             if (username === null || username === undefined) {
                 throw new RequiredError('username','Required parameter username was null or undefined when calling verifyUserForApp.');
+            }
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling verifyUserForApp.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling verifyUserForApp.');
+            }
+            // verify required parameter 'SOURCE_IP' is not null or undefined
+            if (SOURCE_IP === null || SOURCE_IP === undefined) {
+                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling verifyUserForApp.');
             }
             const localVarPath = `/app/{appname}/{username}`
                 .replace(`{${"appname"}}`, encodeURIComponent(String(appname)))
@@ -464,6 +597,18 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
+                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -487,12 +632,15 @@ export const AppApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary add an application
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {Application} application 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addApplication(application: Application, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).addApplication(application, options);
+        addApplication(JWT: string, xRequestID: string, SOURCE_IP: string, application: Application, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).addApplication(JWT, xRequestID, SOURCE_IP, application, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -503,11 +651,14 @@ export const AppApiFp = function(configuration?: Configuration) {
          * @summary Add User to App
          * @param {string} appname the name the app
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addUser2App(appname: string, username: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Updated> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).addUser2App(appname, username, options);
+        addUser2App(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Updated> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).addUser2App(appname, username, JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -517,11 +668,14 @@ export const AppApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get an App
          * @param {string} appname the name the app
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApp(appname: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApplicationWithoutJwt> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).getApp(appname, options);
+        getApp(appname: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).getApp(appname, JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -531,11 +685,14 @@ export const AppApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get Apps of User
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAppOfUser(username: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ApplicationWithoutJwt>> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).getAppOfUser(username, options);
+        getAppOfUser(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Application>> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).getAppOfUser(username, JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -544,11 +701,14 @@ export const AppApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary get all applications
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApplications(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ApplicationResponse>> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).getApplications(options);
+        getApplications(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ApplicationResponse>> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).getApplications(JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -557,12 +717,15 @@ export const AppApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary update an application
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {UpdateApplication} updateApplication 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApplication(updateApplication: UpdateApplication, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).updateApplication(updateApplication, options);
+        updateApplication(JWT: string, xRequestID: string, SOURCE_IP: string, updateApplication: UpdateApplication, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Application> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).updateApplication(JWT, xRequestID, SOURCE_IP, updateApplication, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -573,11 +736,14 @@ export const AppApiFp = function(configuration?: Configuration) {
          * @summary Verify if user is allowed for app
          * @param {string} appname the name the app
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyUserForApp(appname: string, username: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Verified> {
-            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).verifyUserForApp(appname, username, options);
+        verifyUserForApp(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Verified> {
+            const localVarAxiosArgs = AppApiAxiosParamCreator(configuration).verifyUserForApp(appname, username, JWT, xRequestID, SOURCE_IP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -595,73 +761,94 @@ export const AppApiFactory = function (configuration?: Configuration, basePath?:
         /**
          * 
          * @summary add an application
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {Application} application 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addApplication(application: Application, options?: any) {
-            return AppApiFp(configuration).addApplication(application, options)(axios, basePath);
+        addApplication(JWT: string, xRequestID: string, SOURCE_IP: string, application: Application, options?: any) {
+            return AppApiFp(configuration).addApplication(JWT, xRequestID, SOURCE_IP, application, options)(axios, basePath);
         },
         /**
          * 
          * @summary Add User to App
          * @param {string} appname the name the app
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addUser2App(appname: string, username: string, options?: any) {
-            return AppApiFp(configuration).addUser2App(appname, username, options)(axios, basePath);
+        addUser2App(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AppApiFp(configuration).addUser2App(appname, username, JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
         /**
          * 
          * @summary Get an App
          * @param {string} appname the name the app
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApp(appname: string, options?: any) {
-            return AppApiFp(configuration).getApp(appname, options)(axios, basePath);
+        getApp(appname: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AppApiFp(configuration).getApp(appname, JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
         /**
          * 
          * @summary Get Apps of User
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAppOfUser(username: string, options?: any) {
-            return AppApiFp(configuration).getAppOfUser(username, options)(axios, basePath);
+        getAppOfUser(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AppApiFp(configuration).getAppOfUser(username, JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
         /**
          * 
          * @summary get all applications
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getApplications(options?: any) {
-            return AppApiFp(configuration).getApplications(options)(axios, basePath);
+        getApplications(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AppApiFp(configuration).getApplications(JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
         /**
          * 
          * @summary update an application
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {UpdateApplication} updateApplication 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateApplication(updateApplication: UpdateApplication, options?: any) {
-            return AppApiFp(configuration).updateApplication(updateApplication, options)(axios, basePath);
+        updateApplication(JWT: string, xRequestID: string, SOURCE_IP: string, updateApplication: UpdateApplication, options?: any) {
+            return AppApiFp(configuration).updateApplication(JWT, xRequestID, SOURCE_IP, updateApplication, options)(axios, basePath);
         },
         /**
          * 
          * @summary Verify if user is allowed for app
          * @param {string} appname the name the app
          * @param {string} username the name of the user
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} SOURCE_IP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyUserForApp(appname: string, username: string, options?: any) {
-            return AppApiFp(configuration).verifyUserForApp(appname, username, options)(axios, basePath);
+        verifyUserForApp(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+            return AppApiFp(configuration).verifyUserForApp(appname, username, JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
         },
     };
 };
@@ -676,13 +863,16 @@ export class AppApi extends BaseAPI {
     /**
      * 
      * @summary add an application
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {Application} application 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public addApplication(application: Application, options?: any) {
-        return AppApiFp(this.configuration).addApplication(application, options)(this.axios, this.basePath);
+    public addApplication(JWT: string, xRequestID: string, SOURCE_IP: string, application: Application, options?: any) {
+        return AppApiFp(this.configuration).addApplication(JWT, xRequestID, SOURCE_IP, application, options)(this.axios, this.basePath);
     }
 
     /**
@@ -690,59 +880,74 @@ export class AppApi extends BaseAPI {
      * @summary Add User to App
      * @param {string} appname the name the app
      * @param {string} username the name of the user
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public addUser2App(appname: string, username: string, options?: any) {
-        return AppApiFp(this.configuration).addUser2App(appname, username, options)(this.axios, this.basePath);
+    public addUser2App(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AppApiFp(this.configuration).addUser2App(appname, username, JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Get an App
      * @param {string} appname the name the app
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public getApp(appname: string, options?: any) {
-        return AppApiFp(this.configuration).getApp(appname, options)(this.axios, this.basePath);
+    public getApp(appname: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AppApiFp(this.configuration).getApp(appname, JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary Get Apps of User
      * @param {string} username the name of the user
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public getAppOfUser(username: string, options?: any) {
-        return AppApiFp(this.configuration).getAppOfUser(username, options)(this.axios, this.basePath);
+    public getAppOfUser(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AppApiFp(this.configuration).getAppOfUser(username, JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary get all applications
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public getApplications(options?: any) {
-        return AppApiFp(this.configuration).getApplications(options)(this.axios, this.basePath);
+    public getApplications(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AppApiFp(this.configuration).getApplications(JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary update an application
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {UpdateApplication} updateApplication 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public updateApplication(updateApplication: UpdateApplication, options?: any) {
-        return AppApiFp(this.configuration).updateApplication(updateApplication, options)(this.axios, this.basePath);
+    public updateApplication(JWT: string, xRequestID: string, SOURCE_IP: string, updateApplication: UpdateApplication, options?: any) {
+        return AppApiFp(this.configuration).updateApplication(JWT, xRequestID, SOURCE_IP, updateApplication, options)(this.axios, this.basePath);
     }
 
     /**
@@ -750,12 +955,15 @@ export class AppApi extends BaseAPI {
      * @summary Verify if user is allowed for app
      * @param {string} appname the name the app
      * @param {string} username the name of the user
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} SOURCE_IP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AppApi
      */
-    public verifyUserForApp(appname: string, username: string, options?: any) {
-        return AppApiFp(this.configuration).verifyUserForApp(appname, username, options)(this.axios, this.basePath);
+    public verifyUserForApp(appname: string, username: string, JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
+        return AppApiFp(this.configuration).verifyUserForApp(appname, username, JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
     }
 
 }
