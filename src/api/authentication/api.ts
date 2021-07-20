@@ -317,19 +317,19 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary Authenticate a customer
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Login} login 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authenticate(xRequestID: string, SOURCE_IP: string, login: Login, options: any = {}): RequestArgs {
+        authenticate(xRequestID: string, xRealIP: string, login: Login, options: any = {}): RequestArgs {
             // verify required parameter 'xRequestID' is not null or undefined
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling authenticate.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling authenticate.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling authenticate.');
             }
             // verify required parameter 'login' is not null or undefined
             if (login === null || login === undefined) {
@@ -349,8 +349,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -373,12 +373,12 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} username the name of the user
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Password} password 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changePassword(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, password: Password, options: any = {}): RequestArgs {
+        changePassword(username: string, JWT: string, xRequestID: string, xRealIP: string, password: Password, options: any = {}): RequestArgs {
             // verify required parameter 'username' is not null or undefined
             if (username === null || username === undefined) {
                 throw new RequiredError('username','Required parameter username was null or undefined when calling changePassword.');
@@ -391,9 +391,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling changePassword.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling changePassword.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling changePassword.');
             }
             // verify required parameter 'password' is not null or undefined
             if (password === null || password === undefined) {
@@ -418,8 +418,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -441,11 +441,11 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Get all users
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} sOURCXRealIPEIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUsers(JWT: string, xRequestID: string, SOURCE_IP: string, options: any = {}): RequestArgs {
+        getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options: any = {}): RequestArgs {
             // verify required parameter 'JWT' is not null or undefined
             if (JWT === null || JWT === undefined) {
                 throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getUsers.');
@@ -454,9 +454,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getUsers.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling getUsers.');
+            // verify required parameter 'sOURCXRealIPEIP' is not null or undefined
+            if (sOURCXRealIPEIP === null || sOURCXRealIPEIP === undefined) {
+                throw new RequiredError('sOURCXRealIPEIP','Required parameter sOURCXRealIPEIP was null or undefined when calling getUsers.');
             }
             const localVarPath = `/auth`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -476,8 +476,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (sOURCXRealIPEIP !== undefined && sOURCXRealIPEIP !== null) {
+                localVarHeaderParameter['SOURCX-Real-IPE_IP'] = String(sOURCXRealIPEIP);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -495,12 +495,12 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Register a customer
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Login} login 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(JWT: string, xRequestID: string, SOURCE_IP: string, login: Login, options: any = {}): RequestArgs {
+        register(JWT: string, xRequestID: string, xRealIP: string, login: Login, options: any = {}): RequestArgs {
             // verify required parameter 'JWT' is not null or undefined
             if (JWT === null || JWT === undefined) {
                 throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling register.');
@@ -509,9 +509,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling register.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling register.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling register.');
             }
             // verify required parameter 'login' is not null or undefined
             if (login === null || login === undefined) {
@@ -535,8 +535,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -559,12 +559,12 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} username the name of the user
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resetMfa(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options: any = {}): RequestArgs {
+        resetMfa(username: string, JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options: any = {}): RequestArgs {
             // verify required parameter 'username' is not null or undefined
             if (username === null || username === undefined) {
                 throw new RequiredError('username','Required parameter username was null or undefined when calling resetMfa.');
@@ -577,9 +577,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling resetMfa.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling resetMfa.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling resetMfa.');
             }
             // verify required parameter 'jWTToken' is not null or undefined
             if (jWTToken === null || jWTToken === undefined) {
@@ -604,8 +604,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -627,12 +627,12 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Verifiy the jwt
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyToken(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options: any = {}): RequestArgs {
+        verifyToken(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options: any = {}): RequestArgs {
             // verify required parameter 'JWT' is not null or undefined
             if (JWT === null || JWT === undefined) {
                 throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling verifyToken.');
@@ -641,9 +641,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling verifyToken.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling verifyToken.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling verifyToken.');
             }
             // verify required parameter 'jWTToken' is not null or undefined
             if (jWTToken === null || jWTToken === undefined) {
@@ -667,8 +667,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -698,13 +698,13 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * 
          * @summary Authenticate a customer
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Login} login 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authenticate(xRequestID: string, SOURCE_IP: string, login: Login, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Authentication> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).authenticate(xRequestID, SOURCE_IP, login, options);
+        authenticate(xRequestID: string, xRealIP: string, login: Login, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Authentication> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).authenticate(xRequestID, xRealIP, login, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -716,13 +716,13 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {string} username the name of the user
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Password} password 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changePassword(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, password: Password, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Changed> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).changePassword(username, JWT, xRequestID, SOURCE_IP, password, options);
+        changePassword(username: string, JWT: string, xRequestID: string, xRealIP: string, password: Password, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Changed> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).changePassword(username, JWT, xRequestID, xRealIP, password, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -733,12 +733,12 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @summary Get all users
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} sOURCXRealIPEIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUsers(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).getUsers(JWT, xRequestID, SOURCE_IP, options);
+        getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).getUsers(JWT, xRequestID, sOURCXRealIPEIP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -749,13 +749,13 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @summary Register a customer
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Login} login 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(JWT: string, xRequestID: string, SOURCE_IP: string, login: Login, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<JWTToken> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).register(JWT, xRequestID, SOURCE_IP, login, options);
+        register(JWT: string, xRequestID: string, xRealIP: string, login: Login, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<JWTToken> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).register(JWT, xRequestID, xRealIP, login, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -767,13 +767,13 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {string} username the name of the user
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resetMfa(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Resetted> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).resetMfa(username, JWT, xRequestID, SOURCE_IP, jWTToken, options);
+        resetMfa(username: string, JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Resetted> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).resetMfa(username, JWT, xRequestID, xRealIP, jWTToken, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -784,13 +784,13 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @summary Verifiy the jwt
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyToken(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenVerifiyResponse> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).verifyToken(JWT, xRequestID, SOURCE_IP, jWTToken, options);
+        verifyToken(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenVerifiyResponse> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).verifyToken(JWT, xRequestID, xRealIP, jWTToken, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -809,13 +809,13 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * 
          * @summary Authenticate a customer
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Login} login 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authenticate(xRequestID: string, SOURCE_IP: string, login: Login, options?: any) {
-            return AuthApiFp(configuration).authenticate(xRequestID, SOURCE_IP, login, options)(axios, basePath);
+        authenticate(xRequestID: string, xRealIP: string, login: Login, options?: any) {
+            return AuthApiFp(configuration).authenticate(xRequestID, xRealIP, login, options)(axios, basePath);
         },
         /**
          * 
@@ -823,38 +823,38 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} username the name of the user
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Password} password 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changePassword(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, password: Password, options?: any) {
-            return AuthApiFp(configuration).changePassword(username, JWT, xRequestID, SOURCE_IP, password, options)(axios, basePath);
+        changePassword(username: string, JWT: string, xRequestID: string, xRealIP: string, password: Password, options?: any) {
+            return AuthApiFp(configuration).changePassword(username, JWT, xRequestID, xRealIP, password, options)(axios, basePath);
         },
         /**
          * 
          * @summary Get all users
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} sOURCXRealIPEIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUsers(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
-            return AuthApiFp(configuration).getUsers(JWT, xRequestID, SOURCE_IP, options)(axios, basePath);
+        getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options?: any) {
+            return AuthApiFp(configuration).getUsers(JWT, xRequestID, sOURCXRealIPEIP, options)(axios, basePath);
         },
         /**
          * 
          * @summary Register a customer
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {Login} login 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(JWT: string, xRequestID: string, SOURCE_IP: string, login: Login, options?: any) {
-            return AuthApiFp(configuration).register(JWT, xRequestID, SOURCE_IP, login, options)(axios, basePath);
+        register(JWT: string, xRequestID: string, xRealIP: string, login: Login, options?: any) {
+            return AuthApiFp(configuration).register(JWT, xRequestID, xRealIP, login, options)(axios, basePath);
         },
         /**
          * 
@@ -862,26 +862,26 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} username the name of the user
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resetMfa(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any) {
-            return AuthApiFp(configuration).resetMfa(username, JWT, xRequestID, SOURCE_IP, jWTToken, options)(axios, basePath);
+        resetMfa(username: string, JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any) {
+            return AuthApiFp(configuration).resetMfa(username, JWT, xRequestID, xRealIP, jWTToken, options)(axios, basePath);
         },
         /**
          * 
          * @summary Verifiy the jwt
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        verifyToken(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any) {
-            return AuthApiFp(configuration).verifyToken(JWT, xRequestID, SOURCE_IP, jWTToken, options)(axios, basePath);
+        verifyToken(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any) {
+            return AuthApiFp(configuration).verifyToken(JWT, xRequestID, xRealIP, jWTToken, options)(axios, basePath);
         },
     };
 };
@@ -897,14 +897,14 @@ export class AuthApi extends BaseAPI {
      * 
      * @summary Authenticate a customer
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {Login} login 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public authenticate(xRequestID: string, SOURCE_IP: string, login: Login, options?: any) {
-        return AuthApiFp(this.configuration).authenticate(xRequestID, SOURCE_IP, login, options)(this.axios, this.basePath);
+    public authenticate(xRequestID: string, xRealIP: string, login: Login, options?: any) {
+        return AuthApiFp(this.configuration).authenticate(xRequestID, xRealIP, login, options)(this.axios, this.basePath);
     }
 
     /**
@@ -913,14 +913,14 @@ export class AuthApi extends BaseAPI {
      * @param {string} username the name of the user
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {Password} password 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public changePassword(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, password: Password, options?: any) {
-        return AuthApiFp(this.configuration).changePassword(username, JWT, xRequestID, SOURCE_IP, password, options)(this.axios, this.basePath);
+    public changePassword(username: string, JWT: string, xRequestID: string, xRealIP: string, password: Password, options?: any) {
+        return AuthApiFp(this.configuration).changePassword(username, JWT, xRequestID, xRealIP, password, options)(this.axios, this.basePath);
     }
 
     /**
@@ -928,13 +928,13 @@ export class AuthApi extends BaseAPI {
      * @summary Get all users
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} sOURCXRealIPEIP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public getUsers(JWT: string, xRequestID: string, SOURCE_IP: string, options?: any) {
-        return AuthApiFp(this.configuration).getUsers(JWT, xRequestID, SOURCE_IP, options)(this.axios, this.basePath);
+    public getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options?: any) {
+        return AuthApiFp(this.configuration).getUsers(JWT, xRequestID, sOURCXRealIPEIP, options)(this.axios, this.basePath);
     }
 
     /**
@@ -942,14 +942,14 @@ export class AuthApi extends BaseAPI {
      * @summary Register a customer
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {Login} login 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public register(JWT: string, xRequestID: string, SOURCE_IP: string, login: Login, options?: any) {
-        return AuthApiFp(this.configuration).register(JWT, xRequestID, SOURCE_IP, login, options)(this.axios, this.basePath);
+    public register(JWT: string, xRequestID: string, xRealIP: string, login: Login, options?: any) {
+        return AuthApiFp(this.configuration).register(JWT, xRequestID, xRealIP, login, options)(this.axios, this.basePath);
     }
 
     /**
@@ -958,14 +958,14 @@ export class AuthApi extends BaseAPI {
      * @param {string} username the name of the user
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {JWTToken} jWTToken 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public resetMfa(username: string, JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any) {
-        return AuthApiFp(this.configuration).resetMfa(username, JWT, xRequestID, SOURCE_IP, jWTToken, options)(this.axios, this.basePath);
+    public resetMfa(username: string, JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any) {
+        return AuthApiFp(this.configuration).resetMfa(username, JWT, xRequestID, xRealIP, jWTToken, options)(this.axios, this.basePath);
     }
 
     /**
@@ -973,14 +973,14 @@ export class AuthApi extends BaseAPI {
      * @summary Verifiy the jwt
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {JWTToken} jWTToken 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public verifyToken(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any) {
-        return AuthApiFp(this.configuration).verifyToken(JWT, xRequestID, SOURCE_IP, jWTToken, options)(this.axios, this.basePath);
+    public verifyToken(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any) {
+        return AuthApiFp(this.configuration).verifyToken(JWT, xRequestID, xRealIP, jWTToken, options)(this.axios, this.basePath);
     }
 
 }
@@ -996,12 +996,12 @@ export const MfaApiAxiosParamCreator = function (configuration?: Configuration) 
          * @summary setup mfa and receive the qrcode
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mfaSetup(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options: any = {}): RequestArgs {
+        mfaSetup(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options: any = {}): RequestArgs {
             // verify required parameter 'JWT' is not null or undefined
             if (JWT === null || JWT === undefined) {
                 throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling mfaSetup.');
@@ -1010,9 +1010,9 @@ export const MfaApiAxiosParamCreator = function (configuration?: Configuration) 
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling mfaSetup.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling mfaSetup.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling mfaSetup.');
             }
             // verify required parameter 'jWTToken' is not null or undefined
             if (jWTToken === null || jWTToken === undefined) {
@@ -1036,8 +1036,8 @@ export const MfaApiAxiosParamCreator = function (configuration?: Configuration) 
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1059,12 +1059,12 @@ export const MfaApiAxiosParamCreator = function (configuration?: Configuration) 
          * @summary verify mfa
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {MFATokenVerification} mFATokenVerification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mfaVerify(JWT: string, xRequestID: string, SOURCE_IP: string, mFATokenVerification: MFATokenVerification, options: any = {}): RequestArgs {
+        mfaVerify(JWT: string, xRequestID: string, xRealIP: string, mFATokenVerification: MFATokenVerification, options: any = {}): RequestArgs {
             // verify required parameter 'JWT' is not null or undefined
             if (JWT === null || JWT === undefined) {
                 throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling mfaVerify.');
@@ -1073,9 +1073,9 @@ export const MfaApiAxiosParamCreator = function (configuration?: Configuration) 
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling mfaVerify.');
             }
-            // verify required parameter 'SOURCE_IP' is not null or undefined
-            if (SOURCE_IP === null || SOURCE_IP === undefined) {
-                throw new RequiredError('SOURCE_IP','Required parameter SOURCE_IP was null or undefined when calling mfaVerify.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling mfaVerify.');
             }
             // verify required parameter 'mFATokenVerification' is not null or undefined
             if (mFATokenVerification === null || mFATokenVerification === undefined) {
@@ -1099,8 +1099,8 @@ export const MfaApiAxiosParamCreator = function (configuration?: Configuration) 
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (SOURCE_IP !== undefined && SOURCE_IP !== null) {
-                localVarHeaderParameter['SOURCE_IP'] = String(SOURCE_IP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1131,13 +1131,13 @@ export const MfaApiFp = function(configuration?: Configuration) {
          * @summary setup mfa and receive the qrcode
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mfaSetup(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRCode> {
-            const localVarAxiosArgs = MfaApiAxiosParamCreator(configuration).mfaSetup(JWT, xRequestID, SOURCE_IP, jWTToken, options);
+        mfaSetup(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<QRCode> {
+            const localVarAxiosArgs = MfaApiAxiosParamCreator(configuration).mfaSetup(JWT, xRequestID, xRealIP, jWTToken, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -1148,13 +1148,13 @@ export const MfaApiFp = function(configuration?: Configuration) {
          * @summary verify mfa
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {MFATokenVerification} mFATokenVerification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mfaVerify(JWT: string, xRequestID: string, SOURCE_IP: string, mFATokenVerification: MFATokenVerification, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Verified> {
-            const localVarAxiosArgs = MfaApiAxiosParamCreator(configuration).mfaVerify(JWT, xRequestID, SOURCE_IP, mFATokenVerification, options);
+        mfaVerify(JWT: string, xRequestID: string, xRealIP: string, mFATokenVerification: MFATokenVerification, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Verified> {
+            const localVarAxiosArgs = MfaApiAxiosParamCreator(configuration).mfaVerify(JWT, xRequestID, xRealIP, mFATokenVerification, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -1174,26 +1174,26 @@ export const MfaApiFactory = function (configuration?: Configuration, basePath?:
          * @summary setup mfa and receive the qrcode
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {JWTToken} jWTToken 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mfaSetup(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any) {
-            return MfaApiFp(configuration).mfaSetup(JWT, xRequestID, SOURCE_IP, jWTToken, options)(axios, basePath);
+        mfaSetup(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any) {
+            return MfaApiFp(configuration).mfaSetup(JWT, xRequestID, xRealIP, jWTToken, options)(axios, basePath);
         },
         /**
          * 
          * @summary verify mfa
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} SOURCE_IP 
+         * @param {string} xRealIP 
          * @param {MFATokenVerification} mFATokenVerification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mfaVerify(JWT: string, xRequestID: string, SOURCE_IP: string, mFATokenVerification: MFATokenVerification, options?: any) {
-            return MfaApiFp(configuration).mfaVerify(JWT, xRequestID, SOURCE_IP, mFATokenVerification, options)(axios, basePath);
+        mfaVerify(JWT: string, xRequestID: string, xRealIP: string, mFATokenVerification: MFATokenVerification, options?: any) {
+            return MfaApiFp(configuration).mfaVerify(JWT, xRequestID, xRealIP, mFATokenVerification, options)(axios, basePath);
         },
     };
 };
@@ -1210,14 +1210,14 @@ export class MfaApi extends BaseAPI {
      * @summary setup mfa and receive the qrcode
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {JWTToken} jWTToken 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MfaApi
      */
-    public mfaSetup(JWT: string, xRequestID: string, SOURCE_IP: string, jWTToken: JWTToken, options?: any) {
-        return MfaApiFp(this.configuration).mfaSetup(JWT, xRequestID, SOURCE_IP, jWTToken, options)(this.axios, this.basePath);
+    public mfaSetup(JWT: string, xRequestID: string, xRealIP: string, jWTToken: JWTToken, options?: any) {
+        return MfaApiFp(this.configuration).mfaSetup(JWT, xRequestID, xRealIP, jWTToken, options)(this.axios, this.basePath);
     }
 
     /**
@@ -1225,14 +1225,14 @@ export class MfaApi extends BaseAPI {
      * @summary verify mfa
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} SOURCE_IP 
+     * @param {string} xRealIP 
      * @param {MFATokenVerification} mFATokenVerification 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MfaApi
      */
-    public mfaVerify(JWT: string, xRequestID: string, SOURCE_IP: string, mFATokenVerification: MFATokenVerification, options?: any) {
-        return MfaApiFp(this.configuration).mfaVerify(JWT, xRequestID, SOURCE_IP, mFATokenVerification, options)(this.axios, this.basePath);
+    public mfaVerify(JWT: string, xRequestID: string, xRealIP: string, mFATokenVerification: MFATokenVerification, options?: any) {
+        return MfaApiFp(this.configuration).mfaVerify(JWT, xRequestID, xRealIP, mFATokenVerification, options)(this.axios, this.basePath);
     }
 
 }
