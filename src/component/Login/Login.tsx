@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AuthApiService } from '../../api';
-import { Login as loginModel, Token } from '../../api/authentication/index';
+import { Login as loginModel, JWTToken } from '../../api/authentication/index';
 import { MfaApiService } from '../../api';
 import "./Login.css";
 
@@ -50,7 +50,7 @@ export default function Login() {
         };
 
 
-        AuthApiService.authenticate(login).then((response) => {
+        AuthApiService.authenticate((localStorage.getItem('jwt') || ""), "1", login).then((response) => {
             var data = response.data;
             hideError();
 
@@ -59,13 +59,13 @@ export default function Login() {
             localStorage.setItem('apps', JSON.stringify(data.allowedApplicationList));
             localStorage.setItem('user', event.target.username.value);
 
-            let token: Token = {
-                token: data.token,
+            let token: JWTToken = {
+                jwt: data.token,
                 username: event.target.username.value
             }
 
 
-            AuthApiService.verifyToken(token).then((responseVerify) => {
+            AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
 
                 var respdata = responseVerify.data;
 
@@ -76,12 +76,12 @@ export default function Login() {
 
 
                     if (mfaAction === "setup") {
-                        let mfaSetupToken: Token = {
-                            token: String(localStorage.getItem('jwt')),
+                        let mfaSetupToken: JWTToken = {
+                            jwt: String(localStorage.getItem('jwt')),
                             username: String(localStorage.getItem('user'))
                         }
 
-                        MfaApiService.mfaSetup(mfaSetupToken).then((response) => {
+                        MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
                             var data = (response.data.qrcode || '').split(',');
                             localStorage.setItem('mfaimage', data[1]);
 

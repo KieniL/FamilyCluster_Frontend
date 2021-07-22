@@ -8,7 +8,7 @@ class RefreshApps extends React.Component {
         super(props);
         // Don't call this.setState() here!
 
-        AppApiService.getAppOfUser((localStorage.getItem('user') || '')).then((response) => {
+        AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
             var data = response.data;
 
             localStorage.setItem('apps', JSON.stringify(data));

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Admin.css';
 import { AppApiService, AuthApiService, MfaApiService } from '../../api';
-import { Token } from '../../api/authentication/index';
+import { JWTToken } from '../../api/authentication/index';
 
 class Admin extends React.Component {
 
@@ -11,14 +11,14 @@ class Admin extends React.Component {
         super(props);
         // Don't call this.setState() here!
 
-        AppApiService.getApp('Adminportal').then((response) => {
+        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || '')).then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -39,13 +39,13 @@ class Admin extends React.Component {
         });
 
 
-        let token: Token = {
-            token: localStorage.getItem('jwt') || '',
+        let token: JWTToken = {
+            jwt: localStorage.getItem('jwt') || '',
             username: localStorage.getItem('user') || ''
         }
 
 
-        AuthApiService.verifyToken(token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -55,12 +55,12 @@ class Admin extends React.Component {
 
 
                 if (mfaAction === "setup") {
-                    let mfaSetupToken: Token = {
-                        token: String(localStorage.getItem('jwt')),
+                    let mfaSetupToken: JWTToken = {
+                        jwt: String(localStorage.getItem('jwt')),
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup(mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 

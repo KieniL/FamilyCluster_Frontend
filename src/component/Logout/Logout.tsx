@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthApiService } from '../../api';
-import { Token} from '../../api/authentication/index';
+import { JWTToken} from '../../api/authentication/index';
 
 class Logout extends React.Component {
 
@@ -9,13 +9,12 @@ class Logout extends React.Component {
         super(props);
         // Don't call this.setState() here!
 
-        let token: Token = {
+        let token: JWTToken = {
             username: localStorage.getItem('user') || '',
-            token: localStorage.getItem('jwt') || ''
-            
-
+            jwt: localStorage.getItem('jwt') || ''
         }
-        AuthApiService.resetMfa((localStorage.getItem('user') || ''), token).then((response) => {
+        
+        AuthApiService.resetMfa((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1", token).then((response) => {
             localStorage.clear();
             window.location.href = "/frontend/home";
         }, (error) => {

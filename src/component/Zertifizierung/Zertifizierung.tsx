@@ -3,7 +3,7 @@ import { CertificationApiService, AuthApiService, MfaApiService } from '../../ap
 import './Zertifizierung.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Token } from '../../api/authentication/index';
+import { JWTToken } from '../../api/authentication/index';
 
 class Zertifizierung extends React.Component {
 
@@ -38,13 +38,13 @@ class Zertifizierung extends React.Component {
 
 
 
-        let token: Token = {
-            token: localStorage.getItem('jwt') || '',
+        let token: JWTToken = {
+            jwt: localStorage.getItem('jwt') || '',
             username: localStorage.getItem('user') || ''
         }
 
 
-        AuthApiService.verifyToken(token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -54,12 +54,12 @@ class Zertifizierung extends React.Component {
 
 
                 if (mfaAction === "setup") {
-                    let mfaSetupToken: Token = {
-                        token: String(localStorage.getItem('jwt')),
+                    let mfaSetupToken: JWTToken = {
+                        jwt: String(localStorage.getItem('jwt')),
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup(mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -83,7 +83,7 @@ class Zertifizierung extends React.Component {
             console.log(error);
         });
 
-        CertificationApiService.getCertifications().then((responseCertification) => {
+        CertificationApiService.getCertifications((localStorage.getItem('jwt') || ""), "1", "1").then((responseCertification) => {
             var data = responseCertification.data;
 
             this.table = data.map((item) =>

@@ -111,11 +111,26 @@ export const CertApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary add an Certification
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {Certification} certification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addCertifaction(certification: Certification, options: any = {}): RequestArgs {
+        addCertifaction(JWT: string, xRequestID: string, xRealIP: string, certification: Certification, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling addCertifaction.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling addCertifaction.');
+            }
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling addCertifaction.');
+            }
             // verify required parameter 'certification' is not null or undefined
             if (certification === null || certification === undefined) {
                 throw new RequiredError('certification','Required parameter certification was null or undefined when calling addCertifaction.');
@@ -129,6 +144,18 @@ export const CertApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = Object.assign({ method: 'POST' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
+            }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -148,13 +175,28 @@ export const CertApiAxiosParamCreator = function (configuration?: Configuration)
          * 
          * @summary get Certification
          * @param {string} shortname the shortname of the certification
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCertification(shortname: string, options: any = {}): RequestArgs {
+        getCertification(shortname: string, JWT: string, xRequestID: string, xRealIP: string, options: any = {}): RequestArgs {
             // verify required parameter 'shortname' is not null or undefined
             if (shortname === null || shortname === undefined) {
                 throw new RequiredError('shortname','Required parameter shortname was null or undefined when calling getCertification.');
+            }
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getCertification.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getCertification.');
+            }
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling getCertification.');
             }
             const localVarPath = `/cert/{shortname}`
                 .replace(`{${"shortname"}}`, encodeURIComponent(String(shortname)));
@@ -166,6 +208,18 @@ export const CertApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -180,10 +234,25 @@ export const CertApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary get Certifications
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCertifications(options: any = {}): RequestArgs {
+        getCertifications(JWT: string, xRequestID: string, xRealIP: string, options: any = {}): RequestArgs {
+            // verify required parameter 'JWT' is not null or undefined
+            if (JWT === null || JWT === undefined) {
+                throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getCertifications.');
+            }
+            // verify required parameter 'xRequestID' is not null or undefined
+            if (xRequestID === null || xRequestID === undefined) {
+                throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getCertifications.');
+            }
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling getCertifications.');
+            }
             const localVarPath = `/cert`;
             const localVarUrlObj = url.parse(localVarPath, true);
             let baseOptions;
@@ -193,6 +262,18 @@ export const CertApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarRequestOptions = Object.assign({ method: 'GET' }, baseOptions, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (JWT !== undefined && JWT !== null) {
+                localVarHeaderParameter['JWT'] = String(JWT);
+            }
+
+            if (xRequestID !== undefined && xRequestID !== null) {
+                localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
+            }
+
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
+            }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -216,12 +297,15 @@ export const CertApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary add an Certification
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {Certification} certification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addCertifaction(certification: Certification, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Certification> {
-            const localVarAxiosArgs = CertApiAxiosParamCreator(configuration).addCertifaction(certification, options);
+        addCertifaction(JWT: string, xRequestID: string, xRealIP: string, certification: Certification, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Certification> {
+            const localVarAxiosArgs = CertApiAxiosParamCreator(configuration).addCertifaction(JWT, xRequestID, xRealIP, certification, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -231,11 +315,14 @@ export const CertApiFp = function(configuration?: Configuration) {
          * 
          * @summary get Certification
          * @param {string} shortname the shortname of the certification
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCertification(shortname: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Certification> {
-            const localVarAxiosArgs = CertApiAxiosParamCreator(configuration).getCertification(shortname, options);
+        getCertification(shortname: string, JWT: string, xRequestID: string, xRealIP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Certification> {
+            const localVarAxiosArgs = CertApiAxiosParamCreator(configuration).getCertification(shortname, JWT, xRequestID, xRealIP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -244,11 +331,14 @@ export const CertApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary get Certifications
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCertifications(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Certification>> {
-            const localVarAxiosArgs = CertApiAxiosParamCreator(configuration).getCertifications(options);
+        getCertifications(JWT: string, xRequestID: string, xRealIP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Certification>> {
+            const localVarAxiosArgs = CertApiAxiosParamCreator(configuration).getCertifications(JWT, xRequestID, xRealIP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -266,31 +356,40 @@ export const CertApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary add an Certification
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {Certification} certification 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addCertifaction(certification: Certification, options?: any) {
-            return CertApiFp(configuration).addCertifaction(certification, options)(axios, basePath);
+        addCertifaction(JWT: string, xRequestID: string, xRealIP: string, certification: Certification, options?: any) {
+            return CertApiFp(configuration).addCertifaction(JWT, xRequestID, xRealIP, certification, options)(axios, basePath);
         },
         /**
          * 
          * @summary get Certification
          * @param {string} shortname the shortname of the certification
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCertification(shortname: string, options?: any) {
-            return CertApiFp(configuration).getCertification(shortname, options)(axios, basePath);
+        getCertification(shortname: string, JWT: string, xRequestID: string, xRealIP: string, options?: any) {
+            return CertApiFp(configuration).getCertification(shortname, JWT, xRequestID, xRealIP, options)(axios, basePath);
         },
         /**
          * 
          * @summary get Certifications
+         * @param {string} JWT 
+         * @param {string} xRequestID 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCertifications(options?: any) {
-            return CertApiFp(configuration).getCertifications(options)(axios, basePath);
+        getCertifications(JWT: string, xRequestID: string, xRealIP: string, options?: any) {
+            return CertApiFp(configuration).getCertifications(JWT, xRequestID, xRealIP, options)(axios, basePath);
         },
     };
 };
@@ -305,36 +404,45 @@ export class CertApi extends BaseAPI {
     /**
      * 
      * @summary add an Certification
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} xRealIP 
      * @param {Certification} certification 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CertApi
      */
-    public addCertifaction(certification: Certification, options?: any) {
-        return CertApiFp(this.configuration).addCertifaction(certification, options)(this.axios, this.basePath);
+    public addCertifaction(JWT: string, xRequestID: string, xRealIP: string, certification: Certification, options?: any) {
+        return CertApiFp(this.configuration).addCertifaction(JWT, xRequestID, xRealIP, certification, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary get Certification
      * @param {string} shortname the shortname of the certification
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} xRealIP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CertApi
      */
-    public getCertification(shortname: string, options?: any) {
-        return CertApiFp(this.configuration).getCertification(shortname, options)(this.axios, this.basePath);
+    public getCertification(shortname: string, JWT: string, xRequestID: string, xRealIP: string, options?: any) {
+        return CertApiFp(this.configuration).getCertification(shortname, JWT, xRequestID, xRealIP, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @summary get Certifications
+     * @param {string} JWT 
+     * @param {string} xRequestID 
+     * @param {string} xRealIP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CertApi
      */
-    public getCertifications(options?: any) {
-        return CertApiFp(this.configuration).getCertifications(options)(this.axios, this.basePath);
+    public getCertifications(JWT: string, xRequestID: string, xRealIP: string, options?: any) {
+        return CertApiFp(this.configuration).getCertifications(JWT, xRequestID, xRealIP, options)(this.axios, this.basePath);
     }
 
 }

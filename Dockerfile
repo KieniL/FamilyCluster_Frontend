@@ -16,7 +16,7 @@ FROM nginx:1.21.0-alpine
 
 COPY --from=build /app/build /usr/share/nginx/html/frontend
 
-RUN apk update && apk add --upgrade libxml2-dbg curl-doc curl libxml2
+RUN apk update && apk add --upgrade libxml2-dbg curl-doc curl libxml2 gettext
 
 #Remove apk to not allow installation of additional packages
 RUN apk del py-pip && rm -rf /.cache/pip && \
@@ -30,14 +30,16 @@ RUN apk del py-pip && rm -rf /.cache/pip && \
 
 # copy Nginx config files
 COPY nginx/default.conf /etc/nginx/conf.d/
-COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/nginx.conf.template /etc/nginx/
 
 # set file permissions for nginx user
 RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
 
+ADD ./entrypoint.sh entrypoint.sh
 # switch to non-root user
 USER nginx
 
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+
+ENTRYPOINT ["sh", "./entrypoint.sh"]
