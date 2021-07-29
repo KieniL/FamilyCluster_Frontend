@@ -6,7 +6,11 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json /app/package.json
 COPY ./package-lock.json /app/package-lock.json
 RUN npm install
-COPY . /app
+
+#Copy only needed files and directories into container
+COPY public /app/public
+COPY src /app/src
+COPY tsconfig.json /app/tsconfig.json
 
 ENV REACT_APP_API_URL=/api
 
