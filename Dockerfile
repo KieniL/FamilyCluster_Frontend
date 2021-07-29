@@ -14,17 +14,11 @@ RUN npm run build
 # production environment
 FROM nginx:1.21.0-alpine
 
+WORKDIR /app
+
 COPY --from=build /app/build /usr/share/nginx/html/frontend
 
-RUN apk update && apk add --upgrade libxml2-dbg curl-doc curl libxml2 gettext
-
-#Remove apk to not allow installation of additional packages
-RUN apk del py-pip && rm -rf /.cache/pip && \
-  rm -f /sbin/apk  && \
-  rm -rf /etc/apk  && \
-  rm -rf /lib/apk  && \
-  rm -rf /usr/share/apk  && \
-  rm -rf /var/lib/apk
+RUN apk update --no-cache && apk add --upgrade libxml2-dbg=2.9.12-r0 curl-doc=7.78.0-r0 curl=7.78.0-r0 libxml2=2.9.12-r0 gettext=0.20.2-r2 --no-cache
 
 
 
@@ -35,7 +29,7 @@ COPY nginx/nginx.conf.template /etc/nginx/
 # set file permissions for nginx user
 RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
 
-ADD ./entrypoint.sh entrypoint.sh
+COPY ./entrypoint.sh /app/entrypoint.sh
 # switch to non-root user
 USER nginx
 
