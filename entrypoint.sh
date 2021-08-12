@@ -1,7 +1,12 @@
 #!/bin/sh
 
 export TMP='$'
-envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
+
+cp -R /app/. /etc/nginx/
+envsubst < /app/nginx.conf.template > /etc/nginx/nginx.conf
+
+
+nginx -s reload
 
 
 nginx -g 'daemon off;'

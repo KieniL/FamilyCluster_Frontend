@@ -17,7 +17,7 @@ ENV REACT_APP_API_URL=/api
 RUN npm run build
 
 # production environment
-FROM luke19/nginx-base-image:1627574525
+FROM luke19/nginx-base-image:1628796588
 
 
 COPY --from=build /app/build /usr/share/nginx/html/frontend
@@ -26,8 +26,9 @@ COPY --from=build /app/build /usr/share/nginx/html/frontend
 
 # copy Nginx config files
 COPY nginx/default.conf /etc/nginx/conf.d/
-COPY nginx/nginx.conf.template /etc/nginx/
+COPY nginx/nginx.conf.template /app/nginx.conf.template
 
+RUN cp /etc/nginx/conf.d/default.conf /app/conf.d/default.conf
 
 
 COPY ./entrypoint.sh /app/entrypoint.sh
