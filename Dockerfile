@@ -1,6 +1,12 @@
 # build environment
-FROM luke19/node-base-image:1627573790 as build
+FROM luke19/node-base-image:1629374723 as build
 
+LABEL maintainer="KieniL"
+LABEL name="frontend_builder"
+LABEL version="1.0.0"
+LABEL author="KieniL"
+LABEL contact="https://github.com/KieniL/FamilyCluster_Frontend/issues"
+LABEL documentation="https://github.com/KieniL/FamilyCluster_Frontend"
 
 ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json /app/package.json
@@ -17,8 +23,15 @@ ENV REACT_APP_API_URL=/api
 RUN npm run build
 
 # production environment
-FROM luke19/nginx-base-image:1628796588
+FROM luke19/nginx-base-image:1629374723
 
+
+LABEL maintainer="KieniL"
+LABEL name="frontend"
+LABEL version="1.0.0"
+LABEL author="KieniL"
+LABEL contact="https://github.com/KieniL/FamilyCluster_Frontend/issues"
+LABEL documentation="https://github.com/KieniL/FamilyCluster_Frontend"
 
 COPY --from=build /app/build /usr/share/nginx/html/frontend
 
