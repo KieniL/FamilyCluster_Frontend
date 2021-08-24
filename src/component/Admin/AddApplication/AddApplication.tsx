@@ -37,14 +37,14 @@ class AddApplication extends React.Component {
         this.handleCheckboxClick = this.handleCheckboxClick.bind(this);
         this.handleCSSChange = this.handleCSSChange.bind(this);
 
-        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -70,7 +70,7 @@ class AddApplication extends React.Component {
         }
 
 
-        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -85,7 +85,7 @@ class AddApplication extends React.Component {
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -109,7 +109,7 @@ class AddApplication extends React.Component {
             console.log(error);
         });
 
-        AuthApiService.getUsers((localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AuthApiService.getUsers((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data;
 
             data = data!.sort((a, b) => a!.username!.localeCompare(b!.username!));
@@ -179,10 +179,10 @@ class AddApplication extends React.Component {
             cssClasses: this.state.cssClasses
         };
 
-        AppApiService.addApplication((localStorage.getItem('jwt') || ""), "1", "1", application).then((response) => {
+        AppApiService.addApplication((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), application).then((response) => {
             this.setState({ isShown: false });
 
-            AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+            AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
                 var data = response.data;
 
                 localStorage.setItem('apps', JSON.stringify(data));

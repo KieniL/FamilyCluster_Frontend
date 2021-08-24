@@ -15,7 +15,7 @@ class Logout extends React.Component {
             jwt: localStorage.getItem('jwt') || ''
         }
         
-        AuthApiService.resetMfa((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1", token).then((response) => {
+        AuthApiService.resetMfa((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((response) => {
             localStorage.clear();
             window.location.href = "/frontend/home";
         }, (error) => {

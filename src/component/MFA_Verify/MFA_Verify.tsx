@@ -31,7 +31,7 @@ export default function MFA_Verify() {
             mfaToken: event.target.token.value
         };
 
-        MfaApiService.mfaVerify((localStorage.getItem('jwt') || ""), "1", "1", mFATokenVerification).then((response) => {
+        MfaApiService.mfaVerify((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mFATokenVerification).then((response) => {
             var data = response.data;
 
             localStorage.setItem('mfa_done', 'true');

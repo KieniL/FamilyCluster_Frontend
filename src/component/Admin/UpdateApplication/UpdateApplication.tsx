@@ -34,14 +34,14 @@ class UpdateApplication extends React.Component {
 
         this.handleCheckboxClick = this.handleCheckboxClick.bind(this);
 
-        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -68,7 +68,7 @@ class UpdateApplication extends React.Component {
         }
 
 
-        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -83,7 +83,7 @@ class UpdateApplication extends React.Component {
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -107,7 +107,7 @@ class UpdateApplication extends React.Component {
             console.log(error);
         });
 
-        AppApiService.getApplications((localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AppApiService.getApplications((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
 
             var data = response.data;
 
@@ -126,7 +126,7 @@ class UpdateApplication extends React.Component {
 
 
 
-        AuthApiService.getUsers((localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AuthApiService.getUsers((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data;
 
             data = data!.sort((a, b) => a!.username!.localeCompare(b!.username!));
@@ -171,7 +171,7 @@ class UpdateApplication extends React.Component {
     onAppSelectChange(event) {
         this.setState({ selectedApp: event.target.value });
 
-        AppApiService.getApp(event.target.value, (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AppApiService.getApp(event.target.value, (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data;
 
             var users = data.allowedUsers;
@@ -232,9 +232,9 @@ class UpdateApplication extends React.Component {
             cssClasses: this.state.cssClasses
         }
 
-        AppApiService.updateApplication((localStorage.getItem('jwt') || ""), "1", "1", updateApplication).then((response) => {
+        AppApiService.updateApplication((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), updateApplication).then((response) => {
 
-            AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+            AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
                 var data = response.data;
 
                 console.log(data);

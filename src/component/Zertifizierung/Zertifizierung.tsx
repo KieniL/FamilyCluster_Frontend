@@ -44,7 +44,7 @@ class Zertifizierung extends React.Component {
         }
 
 
-        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -59,7 +59,7 @@ class Zertifizierung extends React.Component {
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -83,7 +83,7 @@ class Zertifizierung extends React.Component {
             console.log(error);
         });
 
-        CertificationApiService.getCertifications((localStorage.getItem('jwt') || ""), "1", "1").then((responseCertification) => {
+        CertificationApiService.getCertifications((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((responseCertification) => {
             var data = responseCertification.data;
 
             this.table = data.map((item) =>

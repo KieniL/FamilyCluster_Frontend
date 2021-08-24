@@ -39,7 +39,7 @@ export default function ChangePassword() {
         };
 
 
-        AuthApiService.changePassword((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1", passwordModel).then((response) => {
+        AuthApiService.changePassword((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), passwordModel).then((response) => {
 
             window.location.href = "/frontend/home";
         }, (error) => {

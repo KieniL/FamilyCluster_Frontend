@@ -37,14 +37,14 @@ class Ansparen extends React.Component {
         this.handleAddClick = this.handleAddClick.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
 
-        AppApiService.getApp('Ansparen', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AppApiService.getApp('Ansparen', (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -69,7 +69,7 @@ class Ansparen extends React.Component {
         }
 
 
-        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -84,7 +84,7 @@ class Ansparen extends React.Component {
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
@@ -133,7 +133,7 @@ class Ansparen extends React.Component {
 
 
         array.forEach(element => {
-            AnsparenApiService.addEntry((localStorage.getItem('jwt') || ""), "1", "1", element).then((response) =>  {
+            AnsparenApiService.addEntry((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), element).then((response) =>  {
             }, (error) => {
                 console.log(error);
             });
@@ -168,7 +168,7 @@ class Ansparen extends React.Component {
         this.setState({ showLoadComponent: true });
         this.setState({ showAddComponent: false });
 
-        AnsparenApiService.getCategories((localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AnsparenApiService.getCategories((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data
             var array = [] as any;
 

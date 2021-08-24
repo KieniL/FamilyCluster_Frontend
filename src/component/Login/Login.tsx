@@ -51,7 +51,7 @@ export default function Login() {
 
         getRequestID();
         
-        AuthApiService.authenticate((localStorage.getItem('jwt') || ""), "1", login).then((response) => {
+        AuthApiService.authenticate(getRequestID(), getSourceIp(), login).then((response) => {
             var data = response.data;
             hideError();
 
@@ -66,7 +66,7 @@ export default function Login() {
             }
 
 
-            AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
+            AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((responseVerify) => {
 
                 var respdata = responseVerify.data;
 
@@ -82,7 +82,7 @@ export default function Login() {
                             username: String(localStorage.getItem('user'))
                         }
 
-                        MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
+                        MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mfaSetupToken).then((response) => {
                             var data = (response.data.qrcode || '').split(',');
                             localStorage.setItem('mfaimage', data[1]);
 

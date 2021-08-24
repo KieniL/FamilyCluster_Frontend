@@ -6,12 +6,6 @@ import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 
 class Admin extends React.Component {
 
-    /*componentDidMount() {
-        var headers = getRequestID();
-        globalThis.requestId = headers['x-request-id'];
-        globalThis.sourceIp = headers['x-source-ip'];
-    }*/
-
     constructor(props) {
 
         super(props);
@@ -24,7 +18,7 @@ class Admin extends React.Component {
 
             //Redirect if User is not in allowedUsers
             if (!(allowedUsers?.includes(localStorage.getItem('user') || ''))) {
-                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+                AppApiService.getAppOfUser((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
                     var data = response.data;
 
                     localStorage.setItem('apps', JSON.stringify(data));
@@ -51,7 +45,7 @@ class Admin extends React.Component {
         }
 
 
-        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), "1", "1", token).then((responseVerify) => {
+        AuthApiService.verifyToken((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), token).then((responseVerify) => {
 
             var respdata = responseVerify.data;
 
@@ -66,7 +60,7 @@ class Admin extends React.Component {
                         username: String(localStorage.getItem('user'))
                     }
 
-                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), "1", "1", mfaSetupToken).then((response) => {
+                    MfaApiService.mfaSetup((localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), mfaSetupToken).then((response) => {
                         var data = (response.data.qrcode || '').split(',');
                         localStorage.setItem('mfaimage', data[1]);
 
