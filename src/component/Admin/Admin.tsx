@@ -14,7 +14,6 @@ class Admin extends React.Component {
 
     constructor(props) {
 
-            console.log(getRequestID());
         super(props);
         // Don't call this.setState() here!
 

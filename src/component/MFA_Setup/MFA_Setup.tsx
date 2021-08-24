@@ -1,5 +1,6 @@
 import React from 'react';
 import './MFA_Setup.css';
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 
 class MFA_Setup extends React.Component {
 

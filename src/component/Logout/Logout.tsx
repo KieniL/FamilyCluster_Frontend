@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthApiService } from '../../api';
 import { JWTToken} from '../../api/authentication/index';
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 
 class Logout extends React.Component {
 

@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import { AuthApiService, AppApiService, MfaApiService } from '../../../api';
 import { UpdateApplication as App } from '../../../api/application/index';
 import { JWTToken } from '../../../api/authentication/index';
+import { getRequestID, getSourceIp } from "../../Request_ID/Request_ID";
 
 import "./UpdateApplication.css";
 

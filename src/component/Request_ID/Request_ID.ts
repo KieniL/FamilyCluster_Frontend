@@ -10,7 +10,6 @@ const getRequestID = () => {
     }
     return a;
   }, {});
-  console.log(headers);
   return headers['x-request-id'];
 };
 
@@ -26,7 +25,6 @@ const getSourceIp = () => {
     }
     return a;
   }, {});
-  console.log(headers);
   return headers['x-source-ip'];
 };
 

@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { AuthApiService } from '../../api';
 import { Password } from '../../api/authentication/index';
 import "./ChangePassword.css";
-
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 
 export default function ChangePassword() {
 

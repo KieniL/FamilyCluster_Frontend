@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Chart from "react-google-charts";
 import { JWTToken } from '../../api/authentication/index';
-
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 class Ansparen extends React.Component {
 
 

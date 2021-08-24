@@ -4,7 +4,7 @@ import './Zertifizierung.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { JWTToken } from '../../api/authentication/index';
-
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 class Zertifizierung extends React.Component {
 
 
