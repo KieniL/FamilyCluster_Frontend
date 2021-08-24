@@ -2,16 +2,23 @@ import React from 'react';
 import './Admin.css';
 import { AppApiService, AuthApiService, MfaApiService } from '../../api';
 import { JWTToken } from '../../api/authentication/index';
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 
 class Admin extends React.Component {
 
+    /*componentDidMount() {
+        var headers = getRequestID();
+        globalThis.requestId = headers['x-request-id'];
+        globalThis.sourceIp = headers['x-source-ip'];
+    }*/
 
     constructor(props) {
 
+            console.log(getRequestID());
         super(props);
         // Don't call this.setState() here!
 
-        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), "1", "1").then((response) => {
+        AppApiService.getApp('Adminportal', (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp()).then((response) => {
             var data = response.data
 
             var allowedUsers = data.allowedUsers;

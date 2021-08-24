@@ -5,7 +5,7 @@ import { AuthApiService } from '../../api';
 import { Login as loginModel, JWTToken } from '../../api/authentication/index';
 import { MfaApiService } from '../../api';
 import "./Login.css";
-
+import { getRequestID, getSourceIp } from "../Request_ID/Request_ID";
 
 export default function Login() {
 
@@ -49,7 +49,8 @@ export default function Login() {
             password: event.target.password.value
         };
 
-
+        getRequestID();
+        
         AuthApiService.authenticate((localStorage.getItem('jwt') || ""), "1", login).then((response) => {
             var data = response.data;
             hideError();
