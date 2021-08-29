@@ -295,6 +295,20 @@ export interface User {
 /**
  * 
  * @export
+ * @interface ValidationMessage
+ */
+export interface ValidationMessage {
+    /**
+     * 
+     * @type {string}
+     * @memberof ValidationMessage
+     */
+    messages: string;
+}
+
+/**
+ * 
+ * @export
  * @interface Verified
  */
 export interface Verified {
@@ -441,11 +455,11 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Get all users
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} sOURCXRealIPEIP 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options: any = {}): RequestArgs {
+        getUsers(JWT: string, xRequestID: string, xRealIP: string, options: any = {}): RequestArgs {
             // verify required parameter 'JWT' is not null or undefined
             if (JWT === null || JWT === undefined) {
                 throw new RequiredError('JWT','Required parameter JWT was null or undefined when calling getUsers.');
@@ -454,9 +468,9 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             if (xRequestID === null || xRequestID === undefined) {
                 throw new RequiredError('xRequestID','Required parameter xRequestID was null or undefined when calling getUsers.');
             }
-            // verify required parameter 'sOURCXRealIPEIP' is not null or undefined
-            if (sOURCXRealIPEIP === null || sOURCXRealIPEIP === undefined) {
-                throw new RequiredError('sOURCXRealIPEIP','Required parameter sOURCXRealIPEIP was null or undefined when calling getUsers.');
+            // verify required parameter 'xRealIP' is not null or undefined
+            if (xRealIP === null || xRealIP === undefined) {
+                throw new RequiredError('xRealIP','Required parameter xRealIP was null or undefined when calling getUsers.');
             }
             const localVarPath = `/auth`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -476,8 +490,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarHeaderParameter['X-Request-ID'] = String(xRequestID);
             }
 
-            if (sOURCXRealIPEIP !== undefined && sOURCXRealIPEIP !== null) {
-                localVarHeaderParameter['SOURCX-Real-IPE_IP'] = String(sOURCXRealIPEIP);
+            if (xRealIP !== undefined && xRealIP !== null) {
+                localVarHeaderParameter['X-Real-IP'] = String(xRealIP);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -733,12 +747,12 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @summary Get all users
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} sOURCXRealIPEIP 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>> {
-            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).getUsers(JWT, xRequestID, sOURCXRealIPEIP, options);
+        getUsers(JWT: string, xRequestID: string, xRealIP: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>> {
+            const localVarAxiosArgs = AuthApiAxiosParamCreator(configuration).getUsers(JWT, xRequestID, xRealIP, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = Object.assign(localVarAxiosArgs.options, {url: basePath + localVarAxiosArgs.url})
                 return axios.request(axiosRequestArgs);                
@@ -836,12 +850,12 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @summary Get all users
          * @param {string} JWT 
          * @param {string} xRequestID 
-         * @param {string} sOURCXRealIPEIP 
+         * @param {string} xRealIP 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options?: any) {
-            return AuthApiFp(configuration).getUsers(JWT, xRequestID, sOURCXRealIPEIP, options)(axios, basePath);
+        getUsers(JWT: string, xRequestID: string, xRealIP: string, options?: any) {
+            return AuthApiFp(configuration).getUsers(JWT, xRequestID, xRealIP, options)(axios, basePath);
         },
         /**
          * 
@@ -928,13 +942,13 @@ export class AuthApi extends BaseAPI {
      * @summary Get all users
      * @param {string} JWT 
      * @param {string} xRequestID 
-     * @param {string} sOURCXRealIPEIP 
+     * @param {string} xRealIP 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApi
      */
-    public getUsers(JWT: string, xRequestID: string, sOURCXRealIPEIP: string, options?: any) {
-        return AuthApiFp(this.configuration).getUsers(JWT, xRequestID, sOURCXRealIPEIP, options)(this.axios, this.basePath);
+    public getUsers(JWT: string, xRequestID: string, xRealIP: string, options?: any) {
+        return AuthApiFp(this.configuration).getUsers(JWT, xRequestID, xRealIP, options)(this.axios, this.basePath);
     }
 
     /**
