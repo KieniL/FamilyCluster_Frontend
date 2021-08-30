@@ -115,6 +115,9 @@ export default function Login() {
                 setIsShown(true);
                 console.log(err.response.data.messages); // => the response payload 
                 setMessage(err.response.data.messages);
+            }else{
+                setIsShown(true);
+                setMessage("Username or Password Wrong");
             }
         });
 
@@ -126,7 +129,7 @@ export default function Login() {
             </div>
 
             {isShown && (
-                <span style={{ color: "red" }}>Username or Password Wrong {message}</span>
+                <span style={{ color: "red" }}>{message}</span>
             )}
             <div className="Login">
                 <Form onSubmit={handleSubmit}>
