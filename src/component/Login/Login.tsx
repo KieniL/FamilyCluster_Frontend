@@ -12,6 +12,7 @@ export default function Login() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isShown, setIsShown] = useState(false);
+    const [message, setMessage] = useState<string>('');
     const [passwordShown, setPasswordShown] = useState(false);
     const [icon, setIcon] = useState<string>('fas fa-eye-slash');
 
@@ -109,10 +110,12 @@ export default function Login() {
                 showError();
                 console.log(error);
             });
-        }, (error) => {
-
-            showError();
-            console.log(error);
+        }).catch((err) => {
+            if( err.response ){
+                setIsShown(true);
+                console.log(err.response.data.messages); // => the response payload 
+                setMessage(err.response.data.messages);
+            }
         });
 
     }
@@ -123,7 +126,7 @@ export default function Login() {
             </div>
 
             {isShown && (
-                <span style={{ color: "red" }}>Username or Password Wrong</span>
+                <span style={{ color: "red" }}>Username or Password Wrong {message}</span>
             )}
             <div className="Login">
                 <Form onSubmit={handleSubmit}>

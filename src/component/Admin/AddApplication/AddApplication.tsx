@@ -211,7 +211,7 @@ class AddApplication extends React.Component {
                 </div>
 
                 {this.state.isShown && (
-                    <span style={{ color: "red" }}>Username already given</span>
+                    <span style={{ color: "red" }}>Ein Fehler ist aufgetreten</span>
                 )}
                 <div className="addApp">
                     <Form onSubmit={this.handleSubmit.bind(this)}>

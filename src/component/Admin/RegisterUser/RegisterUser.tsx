@@ -18,7 +18,8 @@ class RegisterUser extends React.Component {
         isShown: false,
         selectedApps: [] as any,
         passwordShown: false,
-        icon: "fas fa-eye-slash"
+        icon: "fas fa-eye-slash",
+        message: ''
     };
     apps = [] as any;
 
@@ -202,10 +203,16 @@ class RegisterUser extends React.Component {
             this.setState({ isShown: false });
 
             window.location.href = "/frontend/admin";
-        }, (error) => {
-            this.setState({ isShown: true });
-
-            console.log(error);
+        })
+        .catch((error) => {
+            if( error.response ){
+                this.setState({ isShown: true });
+                console.log(error.response.data.messages); // => the response payload 
+                this.setState({ message: error.response.data.messages });
+            }else{
+                this.setState({ isShown: true });
+                this.setState({ message: "Ein Fehler ist aufgetreten" });
+            }
         });
     }
 
@@ -219,7 +226,7 @@ class RegisterUser extends React.Component {
                 </div>
 
                 {this.state.isShown && (
-                    <span style={{ color: "red" }}>Username already given</span>
+                    <span style={{ color: "red" }}>{this.state.message}</span>
                 )}
                 <div className="register">
                     <Form onSubmit={this.handleSubmit.bind(this)}>

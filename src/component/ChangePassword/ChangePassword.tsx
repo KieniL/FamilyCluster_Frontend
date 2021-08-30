@@ -11,7 +11,9 @@ export default function ChangePassword() {
 
     const [password, setPassword] = useState<string>('');
     const [passwordShown, setPasswordShown] = useState(false);
+    const [isShown, setIsShown] = useState(false);
     const [icon, setIcon] = useState<string>('fas fa-eye-slash');
+    const [message, setMessage] = useState<string>('');
 
 
     const togglePasswordVisiblity = () => {
@@ -40,11 +42,15 @@ export default function ChangePassword() {
 
 
         AuthApiService.changePassword((localStorage.getItem('user') || ''), (localStorage.getItem('jwt') || ""), getRequestID(), getSourceIp(), passwordModel).then((response) => {
-
+            setIsShown(false);
             window.location.href = "/frontend/home";
-        }, (error) => {
-
-            console.log(error);
+        })
+        .catch((error) => {
+            if( error.response ){
+                setIsShown(true);
+                console.log(error.response.data.messages); // => the response payload 
+                setMessage(error.response.data.messages);
+            }
         });
     }
 
@@ -52,6 +58,9 @@ export default function ChangePassword() {
 
     return (
         <div className="changePasswordPage">
+            {isShown && (
+                <span style={{ color: "red" }}>{message}</span>
+            )}
             <div className="changePassword">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="password" className="password">
