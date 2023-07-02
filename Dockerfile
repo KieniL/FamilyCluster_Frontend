@@ -18,7 +18,7 @@ COPY public /app/public
 COPY src /app/src
 COPY tsconfig.json /app/tsconfig.json
 
-ENV REACT_APP_API_URL=/api
+ENV REACT_APP_API_URL=http://localhost:8001/api
 
 RUN npm run build
 
